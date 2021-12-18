@@ -1,75 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import React from "react";
 import { Container, Grid, Typography, Button } from "@material-ui/core";
-import helloImage from "../../assets/hello.png";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import useStyles from "./LandingPage.style";
-
-type Section = {
-  key: string;
-  html: React.ReactNode;
-};
 
 const LandingPage: React.FunctionComponent = () => {
   const styles = useStyles();
-
-  const sections: Section[] = [
-    {
-      key: "welcome",
-      html: (
-        <Typography variant="h4" component="h2" paragraph>
-          GCP Serverless To-Do App
-        </Typography>
-      ),
-    },
-    {
-      key: "login",
-      html: (
-        <Container>
-          <Button
-            component={Link}
-            variant="contained"
-            color="primary"
-            disableElevation
-            to="/login"
-            className={styles.button}
-          >
-            Login
-          </Button>
-          <Button
-            component={Link}
-            variant="contained"
-            color="secondary"
-            disableElevation
-            to="/registration"
-            className={styles.button}
-          >
-            Register
-          </Button>
-        </Container>
-      ),
-    },
-  ];
-
+  const { isAuthenticated } = useTypedSelector((state) => state.authState);
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
-    <Container component="main" maxWidth="lg" className={styles.root}>
-      <div className={styles.content}>
-        <img className={styles.image} src={helloImage} alt="Hello" />
-        <Grid container spacing={3}>
-          {sections.map(({ html, key }) => (
-            <Grid
-              key={key}
-              item
-              xs={12}
-              sm={6}
-              md={12}
-              className={styles.paragraph}
-            >
-              {html}
+    <section className={styles.landing}>
+      <div className={styles.darkOverlay}>
+        <div className="landing-inner">
+          <h1>Project Dashboard</h1>
+          <p>Track skills used in various projects</p>
+          <Grid container spacing={2} justify="center">
+            <Grid item>
+              <Button variant="contained" color="primary" href="/sign-up">
+                Sign Up
+              </Button>
             </Grid>
-          ))}
-        </Grid>
+            <Grid item>
+              <Button variant="contained" href="/login">
+                Login
+              </Button>
+            </Grid>
+          </Grid>
+        </div>
       </div>
-    </Container>
+    </section>
   );
 };
 
