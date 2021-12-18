@@ -6,6 +6,7 @@ RUN npm ci
 COPY tsconfig.json tsconfig.json
 COPY public public
 COPY src src
+COPY .env .env
 RUN npm run build
 
 # server environment
