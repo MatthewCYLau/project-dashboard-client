@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -17,47 +17,79 @@ import { ColorModeContext } from "../App/App";
 const Header: React.FunctionComponent = () => {
   const styles = useStyles();
   const context = React.useContext(ColorModeContext);
-  const { isAuthenticated } = useTypedSelector((state) => state.authState);
+  const { isAuthenticated, loading } = useTypedSelector(
+    (state) => state.authState
+  );
   const { logout } = useActions();
 
+  const authLinks = (
+    <nav>
+      <Button
+        component={Link}
+        variant="contained"
+        color="primary"
+        disableElevation
+        to="/dashboard"
+      >
+        <i className="fas fa-user" />
+        Dashboard
+      </Button>
+      <Button
+        component={Link}
+        variant="contained"
+        color="primary"
+        disableElevation
+        to="/add-project"
+      >
+        <i className="fas fa-plus" />
+        Add Project
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        disableElevation
+        onClick={logout}
+      >
+        Logout
+      </Button>
+    </nav>
+  );
+  const guestLinks = (
+    <nav>
+      <Button
+        component={Link}
+        variant="contained"
+        color="primary"
+        disableElevation
+        to="/sign-up"
+      >
+        Sign Up
+      </Button>
+      <Button
+        component={Link}
+        variant="contained"
+        color="primary"
+        disableElevation
+        to="/login"
+      >
+        Login
+      </Button>
+    </nav>
+  );
   return (
     <AppBar component="header" position="static">
-      <Toolbar>
+      <Toolbar className={styles.toolbar}>
         <Typography variant="h6" component="h1" className={styles.title}>
-          GCP Serverless
+          <i className="fas fa-code" /> Project Dashboard
         </Typography>
-        <Button
-          component={Link}
-          variant="contained"
-          color="primary"
-          disableElevation
-          to="/"
-        >
-          Home
-        </Button>
-        <Button
-          component={Link}
-          variant="contained"
-          color="primary"
-          disableElevation
-          to="/dashboard"
-        >
-          Dashboard
-        </Button>
-        {isAuthenticated && (
-          <Button
-            variant="contained"
-            color="primary"
-            disableElevation
-            onClick={logout}
-          >
-            Logout
-          </Button>
-        )}
 
         <IconButton onClick={context.toggleColorMode} color="inherit">
           {context.mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
+
+        {!loading && (
+          <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+        )}
       </Toolbar>
     </AppBar>
   );

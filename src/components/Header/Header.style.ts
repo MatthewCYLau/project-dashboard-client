@@ -9,6 +9,7 @@ export default makeStyles(
       },
       toolbar: {
         flexWrap: "wrap",
+        minHeight: "64px",
       },
     }),
   { name: "Header" }
