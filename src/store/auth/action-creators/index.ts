@@ -21,7 +21,7 @@ export const login = ({ username = "", password = "" }: AuthBody) => {
     const body = JSON.stringify({ username, password });
     try {
       const { data }: AxiosResponse<Token> = await axios.post(
-        `${API_BASE_URL}/auth`,
+        `${API_BASE_URL}/api/auth`,
         body,
         config
       );
@@ -45,7 +45,7 @@ export const register = (authBody: AuthBody) => {
     try {
       const { username, password } = authBody;
       const { data }: AxiosResponse<Token> = await axios.post(
-        `${API_BASE_URL}/users`,
+        `${API_BASE_URL}/api/users`,
         {
           username,
           password,
@@ -72,7 +72,7 @@ export const loadUser = () => {
     }
     try {
       const { data }: AxiosResponse<User> = await axios.get(
-        `${API_BASE_URL}/auth`
+        `${API_BASE_URL}/api/auth`
       );
       dispatch({
         type: ActionType.USER_LOADED,
