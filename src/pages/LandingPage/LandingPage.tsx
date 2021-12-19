@@ -8,7 +8,7 @@ const LandingPage: React.FunctionComponent = () => {
   const styles = useStyles();
   const { isAuthenticated } = useTypedSelector((state) => state.authState);
   if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+    // return <Redirect to="/dashboard" />;
   }
   return (
     <section className={styles.landing}>
