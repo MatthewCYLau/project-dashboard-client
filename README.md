@@ -4,7 +4,7 @@
 
 ## Build/run app locally
 
-- Create a `.env` file with the following, and place at project root directory:
+- Create a `.env.local` file with the following, and place at project root directory:
 
 ```bash
 REACT_APP_API_BASE_URL=<API-BASE-URL>
