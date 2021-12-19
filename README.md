@@ -10,7 +10,7 @@
 REACT_APP_API_BASE_URL=<API-BASE-URL>
 ```
 
-- Run `npm run start` and visit aapp at `http://localhost:3000`
+- Run `npm run start` and visit app at `http://localhost:3000`
 
 ## Contributing
 
