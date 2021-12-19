@@ -1,13 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import {
-  AppBar,
-  Button,
-  Toolbar,
-  Typography,
-  Container,
-  IconButton,
-} from "@material-ui/core";
+import { AppBar, Button, Toolbar, IconButton } from "@material-ui/core";
 import useStyles from "./Header.style";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";

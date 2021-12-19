@@ -1,7 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(
-  ({ spacing, breakpoints, palette }) =>
+  ({}) =>
     createStyles({
       landing: {
         position: "relative",
@@ -16,6 +16,18 @@ export default makeStyles(
         left: "0",
         width: "100%",
         height: "100%",
+      },
+      landingInner: {
+        color: "#fff",
+        height: "100%",
+        width: "80%",
+        margin: "auto",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        fontFamily: '"Roboto", sans-serif',
       },
     }),
   { name: "LandingPage" }
