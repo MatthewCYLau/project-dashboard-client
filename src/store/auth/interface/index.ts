@@ -1,11 +1,11 @@
 export interface User {
   user_id: string;
-  username: string;
+  email: string;
   time_created: string;
 }
 
 export interface AuthBody {
-  username: string;
+  email: string;
   password: string;
 }
 

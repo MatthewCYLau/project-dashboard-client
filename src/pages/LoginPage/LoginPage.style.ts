@@ -1,45 +1,39 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(
-  ({ spacing, breakpoints, palette }) =>
+  ({ spacing, palette }) =>
     createStyles({
       root: {
-        flex: 1,
-        display: "flex",
-        overflow: "auto",
-        paddingTop: spacing(3),
-        paddingBottom: spacing(3),
+        height: "100vh",
       },
-      content: {
-        margin: "auto",
+      image: {
+        backgroundImage:
+          "url(https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: palette.text.primary,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      },
+      paper: {
+        margin: spacing(8, 4),
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        [breakpoints.up("md")]: {
-          flexDirection: "row",
-        },
       },
-      image: {
-        maxWidth: 300,
+      avatar: {
+        margin: spacing(1),
+        backgroundColor: palette.text.primary,
+      },
+      form: {
         width: "100%",
-        marginBottom: spacing(3),
-        [breakpoints.up("md")]: {
-          maxWidth: 400,
-          marginBottom: 0,
-          marginRight: spacing(3),
-        },
+        marginTop: spacing(1),
       },
-      code: {
-        fontWeight: "bold",
-        background: palette.grey[200],
-        borderRadius: 4,
-        padding: spacing(0.5, 0.75),
+      submit: {
+        margin: spacing(3, 0, 2),
       },
-      textField: {
-        "& .MuiFormLabel-root": {
-          color: palette.text.primary,
-        },
+      link: {
+        color: "inherit",
+        textDecoration: "none",
       },
     }),
   { name: "LoginPage" }

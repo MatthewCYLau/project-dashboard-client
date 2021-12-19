@@ -11,14 +11,14 @@ interface Error {
   message: string;
 }
 
-export const login = ({ username = "", password = "" }: AuthBody) => {
+export const login = ({ email = "", password = "" }: AuthBody) => {
   return async (dispatch: Dispatch<Actions> | any) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    const body = JSON.stringify({ username, password });
+    const body = JSON.stringify({ email, password });
     try {
       const { data }: AxiosResponse<Token> = await axios.post(
         `${API_BASE_URL}/api/auth`,
@@ -43,11 +43,11 @@ export const login = ({ username = "", password = "" }: AuthBody) => {
 export const register = (authBody: AuthBody) => {
   return async (dispatch: Dispatch<Actions> | any) => {
     try {
-      const { username, password } = authBody;
+      const { email, password } = authBody;
       const { data }: AxiosResponse<Token> = await axios.post(
         `${API_BASE_URL}/api/users`,
         {
-          username,
+          email,
           password,
         }
       );

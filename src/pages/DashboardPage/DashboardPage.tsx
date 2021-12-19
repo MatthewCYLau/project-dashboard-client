@@ -33,7 +33,7 @@ const DashboardPage: React.FunctionComponent = () => {
           <img className={styles.image} src={monitorImage} alt="Monitor" />
           <Container component="main" maxWidth="lg">
             <Typography variant="h4" component="h2" paragraph>
-              Welcome{user ? ` ${user.username}` : ""}!
+              Welcome{user ? ` ${user.email}` : ""}!
             </Typography>
             <div className={styles.todos}>
               {todos.map((todo) => (

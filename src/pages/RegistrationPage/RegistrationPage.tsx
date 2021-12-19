@@ -8,7 +8,7 @@ import registrationImage from "../../assets/register.png";
 import useStyles from "./RegistrationPage.style";
 
 interface RegistrationFormValues {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -17,7 +17,7 @@ const RegistrationPage: React.FunctionComponent = () => {
   const { register } = useActions();
   const { isAuthenticated } = useTypedSelector((state) => state.authState);
 
-  const initialValues: RegistrationFormValues = { username: "", password: "" };
+  const initialValues: RegistrationFormValues = { email: "", password: "" };
 
   const formik = useFormik({
     initialValues,
@@ -41,10 +41,10 @@ const RegistrationPage: React.FunctionComponent = () => {
           </Typography>
           <TextField
             fullWidth
-            id="username"
-            name="username"
-            label="Username"
-            value={formik.values.username}
+            id="email"
+            name="email"
+            label="email"
+            value={formik.values.email}
             onChange={formik.handleChange}
             className={styles.textField}
           />

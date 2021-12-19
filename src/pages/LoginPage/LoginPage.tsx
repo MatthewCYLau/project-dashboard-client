@@ -1,15 +1,40 @@
 import React, { useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import { Container, Typography, TextField, Button } from "@material-ui/core";
-import CircularProgress from "@mui/material/CircularProgress";
+import { Redirect, Link } from "react-router-dom";
+import {
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  Avatar,
+  Box,
+  Link as MaterialUILink,
+} from "@material-ui/core";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import keyImage from "../../assets/key.png";
 import useStyles from "./LoginPage.style";
 
+type CopyrightProps = {
+  className: string;
+};
+
+const Copyright: React.FC<CopyrightProps> = ({ className }) => {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link className={className} to="/">
+        Project Dashboard
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+};
+
 interface LoginFormValues {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -20,7 +45,7 @@ const LoginPage: React.FunctionComponent = () => {
   const { alerts } = useTypedSelector((state) => state.alertState);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const initialValues: LoginFormValues = { username: "", password: "" };
+  const initialValues: LoginFormValues = { email: "", password: "" };
 
   const formik = useFormik({
     initialValues,
@@ -39,44 +64,70 @@ const LoginPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Container component="main" maxWidth="lg" className={styles.root}>
-      <div className={styles.content}>
-        <img className={styles.image} src={keyImage} alt="key" />
-        <form onSubmit={formik.handleSubmit}>
-          <Typography variant="h4" component="h2" paragraph>
-            Login
+    <Grid container component="main" className={styles.root}>
+      <Grid item xs={false} sm={4} md={7} className={styles.image} />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <div className={styles.paper}>
+          <Avatar className={styles.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
           </Typography>
-          <TextField
-            fullWidth
-            id="username"
-            name="username"
-            label="Username"
-            value={formik.values.username}
-            onChange={formik.handleChange}
-            className={styles.textField}
-          />
-          <TextField
-            fullWidth
-            id="password"
-            name="password"
-            label="Password"
-            type="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            className={styles.textField}
-          />
-          <Button
-            color="primary"
-            variant="contained"
-            fullWidth
-            type="submit"
-            onClick={() => setIsLoading(!isLoading)}
+          <form
+            className={styles.form}
+            noValidate
+            onSubmit={formik.handleSubmit}
           >
-            {isLoading ? <CircularProgress /> : "Submit"}
-          </Button>
-        </form>
-      </div>
-    </Container>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={formik.values.email}
+              onChange={formik.handleChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+            />
+            <Button
+              className={styles.submit}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+            >
+              Login In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <MaterialUILink href="/sign-up" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </MaterialUILink>
+              </Grid>
+            </Grid>
+            <Box mt={5}>
+              <Copyright className={styles.link} />
+            </Box>
+          </form>
+        </div>
+      </Grid>
+    </Grid>
   );
 };
 
