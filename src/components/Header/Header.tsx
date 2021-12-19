@@ -86,8 +86,9 @@ const Header: React.FunctionComponent = () => {
   return (
     <AppBar component="header" position="static">
       <Toolbar className={styles.toolbar}>
-        <div className={styles.title}>
+        <div className={styles.titleContainer}>
           <Button
+            className={styles.title}
             component={Link}
             variant="contained"
             color="primary"

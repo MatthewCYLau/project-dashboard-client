@@ -1,5 +1,7 @@
 # Project Dashboard Client
 
+![cicd cloud run workflow](https://github.com/MatthewCYLau/project-dashboard-client/actions/workflows/cicd-cloud-run.yml/badge.svg)
+
 ## Build/run app locally
 
 - Create a `.env` file with the following, and place at project root directory:

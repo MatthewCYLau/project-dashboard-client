@@ -3,9 +3,12 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 export default makeStyles(
   ({ spacing }) =>
     createStyles({
-      title: {
+      titleContainer: {
         marginRight: spacing(3),
         flexGrow: 1,
+      },
+      title: {
+        fontSize: "1rem",
       },
       toolbar: {
         flexWrap: "wrap",
