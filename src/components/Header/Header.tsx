@@ -5,6 +5,7 @@ import {
   Button,
   Toolbar,
   Typography,
+  Container,
   IconButton,
 } from "@material-ui/core";
 import useStyles from "./Header.style";
@@ -24,6 +25,9 @@ const Header: React.FunctionComponent = () => {
 
   const authLinks = (
     <nav>
+      <IconButton onClick={context.toggleColorMode} color="inherit">
+        {context.mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
       <Button
         component={Link}
         variant="contained"
@@ -56,6 +60,9 @@ const Header: React.FunctionComponent = () => {
   );
   const guestLinks = (
     <nav>
+      <IconButton onClick={context.toggleColorMode} color="inherit">
+        {context.mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
       <Button
         component={Link}
         variant="contained"
@@ -79,14 +86,17 @@ const Header: React.FunctionComponent = () => {
   return (
     <AppBar component="header" position="static">
       <Toolbar className={styles.toolbar}>
-        <Typography variant="h6" component="h1" className={styles.title}>
-          <i className="fas fa-code" /> Project Dashboard
-        </Typography>
-
-        <IconButton onClick={context.toggleColorMode} color="inherit">
-          {context.mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
-
+        <div className={styles.title}>
+          <Button
+            component={Link}
+            variant="contained"
+            color="primary"
+            disableElevation
+            to="/"
+          >
+            <i className="fas fa-code" /> Project Dashboard
+          </Button>
+        </div>
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}

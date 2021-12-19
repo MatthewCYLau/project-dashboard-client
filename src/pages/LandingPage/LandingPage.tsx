@@ -7,9 +7,9 @@ import useStyles from "./LandingPage.style";
 const LandingPage: React.FunctionComponent = () => {
   const styles = useStyles();
   const { isAuthenticated } = useTypedSelector((state) => state.authState);
-  if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
-  }
+  // if (isAuthenticated) {
+  //   return <Redirect to="/dashboard" />;
+  // }
   return (
     <section className={styles.landing}>
       <div className={styles.darkOverlay}>
