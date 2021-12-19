@@ -9,6 +9,9 @@ export default makeStyles(
       },
       title: {
         fontSize: "1rem",
+        "& .fas": {
+          marginRight: "10px",
+        },
       },
       toolbar: {
         flexWrap: "wrap",
