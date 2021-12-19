@@ -32,7 +32,7 @@ export default makeStyles(
         margin: spacing(3, 0, 2),
       },
       link: {
-        color: "inherit",
+        color: palette.text.primary,
         textDecoration: "none",
       },
     }),

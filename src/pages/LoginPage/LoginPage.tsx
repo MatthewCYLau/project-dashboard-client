@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, Link } from "react-router-dom";
 import {
   Paper,
@@ -22,7 +22,7 @@ type CopyrightProps = {
 
 const Copyright: React.FC<CopyrightProps> = ({ className }) => {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" className={className} align="center">
       {"Copyright © "}
       <Link className={className} to="/">
         Project Dashboard
@@ -42,8 +42,6 @@ const LoginPage: React.FunctionComponent = () => {
   const styles = useStyles();
   const { login } = useActions();
   const { isAuthenticated } = useTypedSelector((state) => state.authState);
-  const { alerts } = useTypedSelector((state) => state.alertState);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const initialValues: LoginFormValues = { email: "", password: "" };
 
@@ -54,10 +52,6 @@ const LoginPage: React.FunctionComponent = () => {
       actions.setSubmitting(false);
     },
   });
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, [alerts]);
 
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
