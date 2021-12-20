@@ -10,7 +10,7 @@ const CustomAlert: React.FunctionComponent = () => {
   const styles = useStyles();
 
   return (
-    <React.Fragment>
+    <div className={styles.container}>
       {alerts !== null &&
         alerts.length > 0 &&
         alerts.map((alert) => (
@@ -22,7 +22,7 @@ const CustomAlert: React.FunctionComponent = () => {
             {alert.message}
           </Alert>
         ))}
-    </React.Fragment>
+    </div>
   );
 };
 
