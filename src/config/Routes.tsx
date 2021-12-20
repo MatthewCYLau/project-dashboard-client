@@ -5,7 +5,7 @@ import LandingPage from "../pages/LandingPage";
 import DashboardPage from "../pages/DashboardPage";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
-import CreateTodoPage from "../pages/CreateTodoPage";
+import AddSkillPage from "../pages/AddSkillPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 const Routes = () => (
@@ -14,7 +14,7 @@ const Routes = () => (
     <Route exact path="/login" component={LoginPage} />
     <Route exact path="/sign-up" component={RegistrationPage} />
     <PrivateRoute exact path="/dashboard" component={DashboardPage} />
-    <PrivateRoute exact path="/create-todo" component={CreateTodoPage} />
+    <PrivateRoute exact path="/add-skill" component={AddSkillPage} />
     <Route component={NotFoundPage} />
   </Switch>
 );

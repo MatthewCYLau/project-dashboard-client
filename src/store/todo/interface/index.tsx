@@ -1,9 +1,9 @@
-export interface Todo extends CreateTodoBody {
+export interface Todo extends AddSkillBody {
   todo_id: number;
   time_created: string;
 }
 
-export interface CreateTodoBody {
+export interface AddSkillBody {
   subject: string;
   body: string;
 }

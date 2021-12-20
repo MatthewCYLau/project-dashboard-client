@@ -11,12 +11,12 @@ interface GetTodosErrorAction {
   payload: {};
 }
 
-interface CreateTodoSuccessAction {
+interface AddSkillSuccessAction {
   type: ActionType.CREATE_TODO_SUCCESS;
   payload: {};
 }
 
-interface CreateTodoErrorAction {
+interface AddSkillErrorAction {
   type: ActionType.CREATE_TODO_ERROR;
   payload: {};
 }
@@ -34,7 +34,7 @@ interface DeleteTodoErrorAction {
 export type Actions =
   | GetTodosSuccessAction
   | GetTodosErrorAction
-  | CreateTodoSuccessAction
-  | CreateTodoErrorAction
+  | AddSkillSuccessAction
+  | AddSkillErrorAction
   | DeleteTodoSuccessAction
   | DeleteTodoErrorAction;

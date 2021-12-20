@@ -25,16 +25,18 @@ const Header: React.FunctionComponent = () => {
         component={Link}
         variant="contained"
         color="primary"
+        className={styles.button}
         disableElevation
         to="/dashboard"
       >
-        <i className="fas fa-user" />
+        <i className="fas fa-chart-bar"></i>
         Dashboard
       </Button>
       <Button
         component={Link}
         variant="contained"
         color="primary"
+        className={styles.button}
         disableElevation
         to="/add-project"
       >
@@ -42,8 +44,20 @@ const Header: React.FunctionComponent = () => {
         Add Project
       </Button>
       <Button
+        component={Link}
         variant="contained"
         color="primary"
+        className={styles.button}
+        disableElevation
+        to="/add-skill"
+      >
+        <i className="fas fa-book-open" />
+        Add Skill
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        className={styles.button}
         disableElevation
         onClick={logout}
       >

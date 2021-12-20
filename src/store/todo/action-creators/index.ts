@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
 import { API_BASE_URL } from "../../../constants";
-import { CreateTodoBody, TodosList } from "../interface";
+import { AddSkillBody, TodosList } from "../interface";
 
 export const getTodos = () => {
   return async (dispatch: Dispatch<Actions>) => {
@@ -24,7 +24,7 @@ export const getTodos = () => {
   };
 };
 
-export const createTodo = (createTodoBody: CreateTodoBody) => {
+export const createTodo = (createTodoBody: AddSkillBody) => {
   return async (dispatch: Dispatch<Actions>) => {
     try {
       const { subject, body } = createTodoBody;

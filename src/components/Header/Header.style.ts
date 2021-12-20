@@ -13,6 +13,11 @@ export default makeStyles(
           marginRight: "10px",
         },
       },
+      button: {
+        "& .fas": {
+          marginRight: "10px",
+        },
+      },
       toolbar: {
         flexWrap: "wrap",
         minHeight: "64px",
