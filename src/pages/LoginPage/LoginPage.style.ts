@@ -31,10 +31,6 @@ export default makeStyles(
       submit: {
         margin: spacing(3, 0, 2),
       },
-      link: {
-        color: palette.text.primary,
-        textDecoration: "none",
-      },
     }),
   { name: "LoginPage" }
 );

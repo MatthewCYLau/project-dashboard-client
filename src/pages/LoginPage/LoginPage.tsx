@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
   Paper,
   Typography,
@@ -11,27 +11,11 @@ import {
   Link as MaterialUILink,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import CopyRight from "../../components/CopyRight";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import useStyles from "./LoginPage.style";
-
-type CopyrightProps = {
-  className: string;
-};
-
-const Copyright: React.FC<CopyrightProps> = ({ className }) => {
-  return (
-    <Typography variant="body2" className={className} align="center">
-      {"Copyright © "}
-      <Link className={className} to="/">
-        Project Dashboard
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
 
 interface LoginFormValues {
   email: string;
@@ -116,7 +100,7 @@ const LoginPage: React.FunctionComponent = () => {
               </Grid>
             </Grid>
             <Box mt={5}>
-              <Copyright className={styles.link} />
+              <CopyRight />
             </Box>
           </form>
         </div>
