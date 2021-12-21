@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Typography,
@@ -24,17 +24,20 @@ interface MatchParams {
 const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
   ({ history, match }) => {
     const styles = useStyles();
-    const { addProject } = useActions();
-    console.log(match.params.id);
+    const { getProjectById } = useActions();
 
     const initialValues: AddProjectFormValues = {
       name: "",
     };
 
+    useEffect(() => {
+      getProjectById(match.params.id);
+    }, [getProjectById, match.params.id]);
+
     const formik = useFormik({
       initialValues,
       onSubmit: (values, actions) => {
-        addProject(values, history);
+        // editProject(values, history);
         actions.setSubmitting(false);
       },
     });

@@ -4,15 +4,15 @@ import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
 import { API_BASE_URL } from "../../../constants";
-import { AddProjectBody } from "../interface";
+import { Project } from "../interface";
 
 export const addProject = (
-  addProjectBody: AddProjectBody,
+  project: Project,
   history: RouteComponentProps["history"]
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
     try {
-      const { name } = addProjectBody;
+      const { name } = project;
       await axios.post(`${API_BASE_URL}/api/projects`, {
         name,
       });
@@ -24,6 +24,28 @@ export const addProject = (
     } catch (err) {
       dispatch({
         type: ActionType.ADD_PROJECT_ERROR,
+        payload: {},
+      });
+    }
+  };
+};
+
+export const getProjectById = (id: string) => {
+  return async (dispatch: Dispatch<Actions>) => {
+    dispatch({
+      type: ActionType.GET_PROJECT_REQUEST,
+    });
+    try {
+      const { data } = await axios.get<Project>(
+        `${API_BASE_URL}/api/projects/${id}`
+      );
+      dispatch({
+        type: ActionType.GET_PROJECT_SUCCESS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: ActionType.GET_PROJECT_ERROR,
         payload: {},
       });
     }
