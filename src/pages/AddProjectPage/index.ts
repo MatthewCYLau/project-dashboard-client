@@ -1,3 +1,3 @@
-import AddSkillPage from "./AddProjectPage";
+import AddProjectPage from "./AddProjectPage";
 
-export default AddSkillPage;
+export default AddProjectPage;

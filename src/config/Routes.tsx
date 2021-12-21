@@ -7,6 +7,7 @@ import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
 import AddSkillPage from "../pages/AddSkillPage";
 import AddProjectPage from "../pages/AddProjectPage";
+import ProjectPage from "../pages/ProjectPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 const Routes = () => (
@@ -17,6 +18,7 @@ const Routes = () => (
     <PrivateRoute exact path="/dashboard" component={DashboardPage} />
     <PrivateRoute exact path="/add-skill" component={AddSkillPage} />
     <PrivateRoute exact path="/add-project" component={AddProjectPage} />
+    <PrivateRoute exact path="/projects/:id" component={ProjectPage} />
     <Route component={NotFoundPage} />
   </Switch>
 );
