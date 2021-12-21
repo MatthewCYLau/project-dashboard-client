@@ -30,9 +30,8 @@ const AddSkillPage: React.FunctionComponent<RouteComponentProps> = ({
   const formik = useFormik({
     initialValues,
     onSubmit: (values, actions) => {
-      addSkill(values);
+      addSkill(values, history);
       actions.setSubmitting(false);
-      // history.push("/dashboard");
     },
   });
 
