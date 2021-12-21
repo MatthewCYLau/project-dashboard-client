@@ -21,7 +21,7 @@ const AddSkillPage: React.FunctionComponent<RouteComponentProps> = ({
   history,
 }) => {
   const styles = useStyles();
-  const { createTodo } = useActions();
+  const { addSkill } = useActions();
 
   const initialValues: AddSkillFormValues = {
     name: "",
@@ -30,8 +30,8 @@ const AddSkillPage: React.FunctionComponent<RouteComponentProps> = ({
   const formik = useFormik({
     initialValues,
     onSubmit: (values, actions) => {
-      // createTodo(values);
-      // actions.setSubmitting(false);
+      addSkill(values);
+      actions.setSubmitting(false);
       // history.push("/dashboard");
     },
   });
