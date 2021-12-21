@@ -6,6 +6,7 @@ import DashboardPage from "../pages/DashboardPage";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
 import AddSkillPage from "../pages/AddSkillPage";
+import AddProjectPage from "../pages/AddProjectPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 const Routes = () => (
@@ -15,6 +16,7 @@ const Routes = () => (
     <Route exact path="/sign-up" component={RegistrationPage} />
     <PrivateRoute exact path="/dashboard" component={DashboardPage} />
     <PrivateRoute exact path="/add-skill" component={AddSkillPage} />
+    <PrivateRoute exact path="/add-project" component={AddProjectPage} />
     <Route component={NotFoundPage} />
   </Switch>
 );
