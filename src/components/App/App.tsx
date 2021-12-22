@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { store } from "../../store";
 import { useActions } from "../../hooks/useActions";
+import setAuthToken from "../../utils/setAuthToken";
 import useStyles from "./App.style";
 import createTheme from "../../config/Theme";
 import Routes from "../../config/Routes";
@@ -14,6 +15,10 @@ export const ColorModeContext = React.createContext({
   mode: "",
   toggleColorMode: () => {},
 });
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const App = () => {
   const { loadUser } = useActions();

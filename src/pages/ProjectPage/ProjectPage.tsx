@@ -7,9 +7,11 @@ import {
   Avatar,
   CssBaseline,
 } from "@material-ui/core";
+import CircularProgress from "@mui/material/CircularProgress";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import useStyles from "./ProjectPage.style";
 import { RouteComponentProps } from "react-router";
 
@@ -25,14 +27,17 @@ const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
   ({ history, match }) => {
     const styles = useStyles();
     const { getProjectById } = useActions();
+    const { loading, project } = useTypedSelector(
+      (state) => state.projectState
+    );
 
     const initialValues: AddProjectFormValues = {
-      name: "",
+      name: project.name,
     };
 
     useEffect(() => {
       getProjectById(match.params.id);
-    }, [getProjectById, match.params.id]);
+    }, []);
 
     const formik = useFormik({
       initialValues,
@@ -42,7 +47,9 @@ const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
       },
     });
 
-    return (
+    return loading ? (
+      <CircularProgress />
+    ) : (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={styles.paper}>
