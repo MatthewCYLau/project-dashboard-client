@@ -1,12 +1,15 @@
 import { Actions } from "../actions";
 import { ActionType } from "../action-types";
+import { SkillsList } from "../interface";
 
 interface SkillState {
   loading: boolean;
+  skills: SkillsList;
 }
 
 const initialState = {
   loading: true,
+  skills: [],
 };
 
 const reducer = (
@@ -23,6 +26,12 @@ const reducer = (
       return {
         ...state,
         loading: false,
+      };
+    case ActionType.GET_SKILLS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        skills: action.payload,
       };
     default:
       return state;

@@ -4,7 +4,7 @@ import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
 import { API_BASE_URL } from "../../../constants";
-import { AddSkillBody } from "../interface";
+import { AddSkillBody, SkillsList } from "../interface";
 
 export const addSkill = (
   addSkillBody: AddSkillBody,
@@ -24,6 +24,25 @@ export const addSkill = (
     } catch (err) {
       dispatch({
         type: ActionType.ADD_SKILL_ERROR,
+        payload: {},
+      });
+    }
+  };
+};
+
+export const getSkills = () => {
+  return async (dispatch: Dispatch<Actions>) => {
+    try {
+      const { data } = await axios.get<SkillsList>(
+        `${API_BASE_URL}/api/skills`
+      );
+      dispatch({
+        type: ActionType.GET_SKILLS_SUCCESS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: ActionType.GET_SKILLS_ERROR,
         payload: {},
       });
     }
