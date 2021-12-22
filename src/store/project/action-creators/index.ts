@@ -11,6 +11,9 @@ export const addProject = (
   history: RouteComponentProps["history"]
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
+    dispatch({
+      type: ActionType.ADD_PROJECT_REQUEST,
+    });
     try {
       const { name } = project;
       const { data } = await axios.post<AddProjectResponse>(
@@ -23,7 +26,7 @@ export const addProject = (
         type: ActionType.ADD_PROJECT_SUCCESS,
       });
       console.log(data);
-      history.push(`/projects/${data.project_id}`);
+      history.push(`/projects/${data.project_id}/project-skills`);
     } catch (err) {
       dispatch({
         type: ActionType.ADD_PROJECT_ERROR,

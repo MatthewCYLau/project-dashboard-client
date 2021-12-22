@@ -1,6 +1,10 @@
 import { ActionType } from "../action-types";
 import { Project } from "../interface";
 
+interface AddProjectRequestAction {
+  type: ActionType.ADD_PROJECT_REQUEST;
+}
+
 interface AddProjectSuccessAction {
   type: ActionType.ADD_PROJECT_SUCCESS;
 }
@@ -25,6 +29,7 @@ interface GetProjectErrorAction {
 }
 
 export type Actions =
+  | AddProjectRequestAction
   | AddProjectSuccessAction
   | AddProjectErrorAction
   | GetProjectRequestAction

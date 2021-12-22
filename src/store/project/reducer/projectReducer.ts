@@ -19,6 +19,12 @@ const reducer = (
   action: Actions
 ): ProjectState => {
   switch (action.type) {
+    case ActionType.GET_PROJECT_REQUEST:
+    case ActionType.ADD_PROJECT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
     case ActionType.ADD_PROJECT_SUCCESS:
       return {
         ...state,

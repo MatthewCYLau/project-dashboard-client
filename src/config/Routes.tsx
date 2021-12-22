@@ -8,6 +8,7 @@ import RegistrationPage from "../pages/RegistrationPage";
 import AddSkillPage from "../pages/AddSkillPage";
 import AddProjectPage from "../pages/AddProjectPage";
 import ProjectPage from "../pages/ProjectPage";
+import ProjectSkillsPage from "../pages/ProjectSkillsPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 const Routes = () => (
@@ -19,6 +20,11 @@ const Routes = () => (
     <PrivateRoute exact path="/add-skill" component={AddSkillPage} />
     <PrivateRoute exact path="/add-project" component={AddProjectPage} />
     <PrivateRoute exact path="/projects/:id" component={ProjectPage} />
+    <PrivateRoute
+      exact
+      path="/projects/:id/project-skills"
+      component={ProjectSkillsPage}
+    />
     <Route component={NotFoundPage} />
   </Switch>
 );
