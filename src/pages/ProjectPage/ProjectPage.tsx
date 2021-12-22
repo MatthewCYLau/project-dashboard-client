@@ -40,6 +40,7 @@ const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
     }, []);
 
     const formik = useFormik({
+      enableReinitialize: true,
       initialValues,
       onSubmit: (values, actions) => {
         // editProject(values, history);
