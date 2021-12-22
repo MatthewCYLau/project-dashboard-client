@@ -49,7 +49,7 @@ const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
     });
 
     return loading ? (
-      <CircularProgress />
+      <CircularProgress className={styles.loader} />
     ) : (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
