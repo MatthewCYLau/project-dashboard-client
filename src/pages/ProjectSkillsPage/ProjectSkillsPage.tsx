@@ -10,6 +10,7 @@ import {
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import RemoveCircle from "@material-ui/icons/RemoveCircle";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import useStyles from "./ProjectSkillsPage.style";
@@ -60,12 +61,15 @@ const ProjectSkillsPage: React.FunctionComponent<
             disabled={true}
             value={project.name}
           />
-          <Autocomplete
-            disablePortal
-            id="project-skills"
-            options={options}
-            renderInput={(params) => <TextField {...params} label="Skill" />}
-          />
+          <div className={styles.projectSkillContainer}>
+            <Autocomplete
+              disablePortal
+              id="project-skills"
+              options={options}
+              renderInput={(params) => <TextField {...params} label="Skill" />}
+            />
+            <RemoveCircle />
+          </div>
           <Button
             type="submit"
             fullWidth

@@ -29,6 +29,16 @@ export default makeStyles(
         left: "50%",
         transform: "translate(-50%, -50%)",
       },
+      projectSkillContainer: {
+        display: "flex",
+        "& .MuiAutocomplete-root": {
+          flex: "1",
+          paddingRight: "10px",
+        },
+        "& .MuiSvgIcon-root": {
+          marginTop: "auto",
+        },
+      },
     }),
   { name: "ProjectSkillsPage" }
 );
