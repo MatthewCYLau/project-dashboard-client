@@ -20,6 +20,9 @@ export default makeStyles(
       submit: {
         margin: spacing(3, 0, 2),
       },
+      secondaryButton: {
+        backgroundColor: palette.text.secondary,
+      },
     }),
   { name: "ProjectPage" }
 );

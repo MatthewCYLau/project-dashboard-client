@@ -87,6 +87,15 @@ const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
               Save Project
             </Button>
           </form>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={styles.secondaryButton}
+            onClick={() => history.push(`${match.url}/project-skills`)}
+          >
+            Update Project Skills
+          </Button>
         </div>
       </Container>
     );
