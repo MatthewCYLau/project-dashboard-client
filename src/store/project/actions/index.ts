@@ -3,7 +3,6 @@ import { Project } from "../interface";
 
 interface AddProjectSuccessAction {
   type: ActionType.ADD_PROJECT_SUCCESS;
-  payload: {};
 }
 
 interface AddProjectErrorAction {

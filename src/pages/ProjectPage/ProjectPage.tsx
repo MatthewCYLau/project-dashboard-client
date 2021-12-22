@@ -58,7 +58,7 @@ const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
             <AddCircleIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Add a project
+            Update project
           </Typography>
           <form
             className={styles.form}
@@ -84,7 +84,7 @@ const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
               color="primary"
               className={styles.submit}
             >
-              Add Project
+              Save Project
             </Button>
           </form>
         </div>

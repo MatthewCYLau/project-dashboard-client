@@ -4,7 +4,7 @@ import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
 import { API_BASE_URL } from "../../../constants";
-import { Project } from "../interface";
+import { Project, AddProjectResponse } from "../interface";
 
 export const addProject = (
   project: Project,
@@ -13,14 +13,17 @@ export const addProject = (
   return async (dispatch: Dispatch<Actions>) => {
     try {
       const { name } = project;
-      await axios.post(`${API_BASE_URL}/api/projects`, {
-        name,
-      });
+      const { data } = await axios.post<AddProjectResponse>(
+        `${API_BASE_URL}/api/projects`,
+        {
+          name,
+        }
+      );
       dispatch({
         type: ActionType.ADD_PROJECT_SUCCESS,
-        payload: {},
       });
-      history.push("/dashboard");
+      console.log(data);
+      history.push(`/projects/${data.project_id}`);
     } catch (err) {
       dispatch({
         type: ActionType.ADD_PROJECT_ERROR,
