@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Typography,
@@ -21,11 +21,17 @@ interface MatchParams {
   id: string;
 }
 
+interface ProjectSkill {
+  name: string;
+}
+
 const ProjectSkillsPage: React.FunctionComponent<
   RouteComponentProps<MatchParams>
 > = ({ match }) => {
   const styles = useStyles();
   const { getProjectById, getSkills } = useActions();
+  const [projectSkills, setProjectSkills] = useState<ProjectSkill[]>([]);
+
   const { loading, project } = useTypedSelector((state) => state.projectState);
   const { skills } = useTypedSelector((state) => state.skillState);
   console.log(loading);
