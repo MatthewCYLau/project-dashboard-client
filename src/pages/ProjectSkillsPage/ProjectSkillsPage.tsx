@@ -10,6 +10,7 @@ import {
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import AddIcon from "@material-ui/icons/Add";
 import RemoveCircle from "@material-ui/icons/RemoveCircle";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -70,6 +71,14 @@ const ProjectSkillsPage: React.FunctionComponent<
             />
             <RemoveCircle />
           </div>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={styles.secondaryButton}
+          >
+            <AddIcon />
+          </Button>
           <Button
             type="submit"
             fullWidth
