@@ -34,7 +34,6 @@ const ProjectSkillsPage: React.FunctionComponent<
 
   const { loading, project } = useTypedSelector((state) => state.projectState);
   const { skills } = useTypedSelector((state) => state.skillState);
-  console.log(loading);
 
   const options = skills.map((skill) => skill.name);
 
@@ -68,20 +67,34 @@ const ProjectSkillsPage: React.FunctionComponent<
             disabled={true}
             value={project.name}
           />
-          <div className={styles.projectSkillContainer}>
-            <Autocomplete
-              disablePortal
-              id="project-skills"
-              options={options}
-              renderInput={(params) => <TextField {...params} label="Skill" />}
-            />
-            <RemoveCircle />
-          </div>
+          {projectSkills.map((v, i) => (
+            <div className={styles.projectSkillContainer}>
+              <Autocomplete
+                key={i}
+                disablePortal
+                id="project-skills"
+                options={options}
+                renderInput={(params) => (
+                  <TextField {...params} label="Skill" />
+                )}
+              />
+              <RemoveCircle />
+            </div>
+          ))}
+
           <Button
             fullWidth
             variant="contained"
             color="primary"
             className={styles.secondaryButton}
+            onClick={() =>
+              setProjectSkills((prevState) => [
+                ...prevState,
+                {
+                  name: "foo",
+                },
+              ])
+            }
           >
             <AddIcon />
           </Button>
