@@ -37,6 +37,13 @@ const ProjectSkillsPage: React.FunctionComponent<
 
   const options = skills.map((skill) => skill.name);
 
+  const removeItem = (_event: React.MouseEvent<HTMLElement>, index: number) => {
+    setProjectSkills([
+      ...projectSkills.slice(0, index),
+      ...projectSkills.slice(index + 1),
+    ]);
+  };
+
   useEffect(() => {
     getProjectById(match.params.id);
     getSkills();
@@ -78,7 +85,13 @@ const ProjectSkillsPage: React.FunctionComponent<
                   <TextField {...params} label="Skill" />
                 )}
               />
-              <RemoveCircle />
+              <div
+                onClick={(e) => {
+                  removeItem(e, i);
+                }}
+              >
+                <RemoveCircle />
+              </div>
             </div>
           ))}
 
