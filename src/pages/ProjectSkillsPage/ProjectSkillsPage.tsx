@@ -86,6 +86,7 @@ const ProjectSkillsPage: React.FunctionComponent<
                 )}
               />
               <div
+                className={styles.iconContainer}
                 onClick={(e) => {
                   removeItem(e, i);
                 }}

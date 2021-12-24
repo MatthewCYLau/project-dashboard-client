@@ -35,9 +35,9 @@ export default makeStyles(
           flex: "1",
           paddingRight: "10px",
         },
-        "& .MuiSvgIcon-root": {
-          marginTop: "auto",
-        },
+      },
+      iconContainer: {
+        marginTop: "auto",
       },
     }),
   { name: "ProjectSkillsPage" }
