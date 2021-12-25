@@ -3,6 +3,7 @@ export interface AddSkillBody {
 }
 
 interface Skill {
+  _id: string;
   name: string;
 }
 

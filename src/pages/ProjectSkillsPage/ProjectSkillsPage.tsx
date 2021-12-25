@@ -22,6 +22,7 @@ interface MatchParams {
 }
 
 interface ProjectSkill {
+  skill_id: string;
   name: string | null;
 }
 
@@ -44,11 +45,15 @@ const ProjectSkillsPage: React.FunctionComponent<
     ]);
   };
 
-  const setProjectSkillsState = (index: number, name: string | null) => {
+  const getSkillIdBySkillName = (name: string | null) => {
+    console.log(name);
+    const skilId = skills.find((skill) => skill.name === name)?._id;
+    return skilId ? skilId : "";
+  };
+
+  const setProjectSkillsState = (index: number, projectSkill: ProjectSkill) => {
     let updatedProjectSkills = [...projectSkills];
-    updatedProjectSkills[index] = {
-      name,
-    };
+    updatedProjectSkills[index] = projectSkill;
     setProjectSkills(updatedProjectSkills);
   };
   useEffect(() => {
@@ -93,7 +98,10 @@ const ProjectSkillsPage: React.FunctionComponent<
                   <TextField {...params} label="Skill" />
                 )}
                 onChange={(event, newValue) => {
-                  setProjectSkillsState(i, newValue);
+                  setProjectSkillsState(i, {
+                    skill_id: getSkillIdBySkillName(newValue),
+                    name: newValue,
+                  });
                 }}
               />
               <div
@@ -117,6 +125,7 @@ const ProjectSkillsPage: React.FunctionComponent<
                 ...prevState,
                 {
                   name: null,
+                  skill_id: "",
                 },
               ])
             }
