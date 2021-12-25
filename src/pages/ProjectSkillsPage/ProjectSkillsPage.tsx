@@ -22,7 +22,7 @@ interface MatchParams {
 }
 
 interface ProjectSkill {
-  name: string;
+  name: string | null;
 }
 
 const ProjectSkillsPage: React.FunctionComponent<
@@ -44,6 +44,13 @@ const ProjectSkillsPage: React.FunctionComponent<
     ]);
   };
 
+  const setProjectSkillsState = (index: number, name: string | null) => {
+    let updatedProjectSkills = [...projectSkills];
+    updatedProjectSkills[index] = {
+      name,
+    };
+    setProjectSkills(updatedProjectSkills);
+  };
   useEffect(() => {
     getProjectById(match.params.id);
     getSkills();
@@ -78,12 +85,16 @@ const ProjectSkillsPage: React.FunctionComponent<
             <div className={styles.projectSkillContainer}>
               <Autocomplete
                 key={i}
+                value={projectSkills[i].name}
                 disablePortal
                 id="project-skills"
                 options={options}
                 renderInput={(params) => (
                   <TextField {...params} label="Skill" />
                 )}
+                onChange={(event, newValue) => {
+                  setProjectSkillsState(i, newValue);
+                }}
               />
               <div
                 className={styles.iconContainer}
@@ -105,7 +116,7 @@ const ProjectSkillsPage: React.FunctionComponent<
               setProjectSkills((prevState) => [
                 ...prevState,
                 {
-                  name: "foo",
+                  name: null,
                 },
               ])
             }
