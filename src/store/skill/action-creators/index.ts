@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../../utils/api";
 import { RouteComponentProps } from "react-router";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
@@ -13,7 +13,7 @@ export const addSkill = (
   return async (dispatch: Dispatch<Actions>) => {
     try {
       const { name } = addSkillBody;
-      await axios.post(`${API_BASE_URL}/api/skills`, {
+      await api.post(`${API_BASE_URL}/api/skills`, {
         name,
       });
       dispatch({
@@ -33,9 +33,7 @@ export const addSkill = (
 export const getSkills = () => {
   return async (dispatch: Dispatch<Actions>) => {
     try {
-      const { data } = await axios.get<SkillsList>(
-        `${API_BASE_URL}/api/skills`
-      );
+      const { data } = await api.get<SkillsList>(`${API_BASE_URL}/api/skills`);
       dispatch({
         type: ActionType.GET_SKILLS_SUCCESS,
         payload: data,

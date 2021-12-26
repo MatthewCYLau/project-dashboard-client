@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
+import setAuthToken from "../utils/setAuthToken";
 
 declare global {
   interface Window {
@@ -10,8 +11,23 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const store = createStore(
+const store = createStore(
   reducers,
   {},
   composeEnhancers(applyMiddleware(thunk))
 );
+
+let currentState = store.getState();
+
+store.subscribe(() => {
+  let previousState = currentState;
+  currentState = store.getState();
+  if (previousState.authState.token !== currentState.authState.token) {
+    const token = currentState.authState.token;
+    if (token) {
+      setAuthToken(token);
+    }
+  }
+});
+
+export default store;

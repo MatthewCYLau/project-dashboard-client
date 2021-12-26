@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ActionType } from "../store/auth/action-types";
-import { store } from "../store/store";
+import store from "../store/store";
 
 const api = axios.create({
   baseURL: "/api",

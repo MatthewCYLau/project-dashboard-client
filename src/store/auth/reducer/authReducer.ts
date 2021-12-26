@@ -31,7 +31,6 @@ const reducer = (
 
     case ActionType.REGISTRATION_SUCCESS:
     case ActionType.LOGIN_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         ...action.payload,
@@ -42,7 +41,6 @@ const reducer = (
     case ActionType.AUTH_ERROR:
     case ActionType.LOGIN_FAILED:
     case ActionType.LOGOUT:
-      localStorage.removeItem("token");
       return {
         ...state,
         token: null,

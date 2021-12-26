@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../../utils/api";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
@@ -11,7 +11,7 @@ export const updateProjectSkill = (
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
     try {
-      await axios.post(
+      await api.post(
         `${API_BASE_URL}/api/projects/${projectId}/project-skills`,
         {
           projectSkills,

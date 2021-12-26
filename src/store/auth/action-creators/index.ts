@@ -1,10 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import api from "../../../utils/api";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
 import { AuthBody, User, Token } from "../interface";
 import { API_BASE_URL } from "../../../constants";
-import setAuthToken from "../../../utils/setAuthToken";
 import { setAlert } from "../../alert/action-creators";
 
 interface Error {
@@ -20,7 +20,7 @@ export const login = ({ email = "", password = "" }: AuthBody) => {
     };
     const body = JSON.stringify({ email, password });
     try {
-      const { data }: AxiosResponse<Token> = await axios.post(
+      const { data }: AxiosResponse<Token> = await api.post(
         `${API_BASE_URL}/api/auth`,
         body,
         config
@@ -44,7 +44,7 @@ export const register = (authBody: AuthBody) => {
   return async (dispatch: Dispatch<Actions> | any) => {
     try {
       const { email, password } = authBody;
-      const { data }: AxiosResponse<Token> = await axios.post(
+      const { data }: AxiosResponse<Token> = await api.post(
         `${API_BASE_URL}/api/users`,
         {
           email,
@@ -67,11 +67,8 @@ export const register = (authBody: AuthBody) => {
 
 export const loadUser = () => {
   return async (dispatch: Dispatch<Actions>) => {
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-    }
     try {
-      const { data }: AxiosResponse<User> = await axios.get(
+      const { data }: AxiosResponse<User> = await api.get(
         `${API_BASE_URL}/api/auth`
       );
       dispatch({

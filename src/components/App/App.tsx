@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { store } from "../../store";
+import store from "../../store/store";
 import { useActions } from "../../hooks/useActions";
+import { ActionType } from "../../store/auth/action-types";
 import setAuthToken from "../../utils/setAuthToken";
 import useStyles from "./App.style";
 import createTheme from "../../config/Theme";
@@ -23,8 +24,15 @@ if (localStorage.token) {
 const App = () => {
   const { loadUser } = useActions();
   useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
     loadUser();
+    window.addEventListener("storage", () => {
+      if (!localStorage.token) store.dispatch({ type: ActionType.LOGOUT });
+    });
   }, [loadUser]);
+
   const styles = useStyles();
 
   return (
