@@ -13,7 +13,7 @@ export const addProjectSkills = (
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
     try {
-      await api.post(
+      await api.put(
         `${API_BASE_URL}/api/projects/${projectId}/project-skills`,
         projectSkills
       );
