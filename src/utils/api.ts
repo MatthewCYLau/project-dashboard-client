@@ -3,7 +3,6 @@ import { ActionType } from "../store/auth/action-types";
 import store from "../store/store";
 
 const api = axios.create({
-  baseURL: "/api",
   headers: {
     "Content-Type": "application/json",
   },
