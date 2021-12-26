@@ -11,6 +11,7 @@ const initialState = {
   loading: true,
   project: {
     name: "",
+    project_skills: [],
   },
 };
 

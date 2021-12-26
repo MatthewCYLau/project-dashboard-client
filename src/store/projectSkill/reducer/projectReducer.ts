@@ -1,15 +1,12 @@
 import { Actions } from "../actions";
 import { ActionType } from "../action-types";
-import { ProjectSkill } from "../interface";
 
 interface ProjectSkillState {
   loading: boolean;
-  projectSkills: ProjectSkill[];
 }
 
 const initialState = {
   loading: true,
-  projectSkills: [],
 };
 
 const reducer = (

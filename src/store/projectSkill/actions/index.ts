@@ -1,5 +1,4 @@
 import { ActionType } from "../action-types";
-import { ProjectSkill } from "../interface";
 
 interface AddProjectSkillSuccessAction {
   type: ActionType.ADD_PROJECT_SKILL_SUCCESS;

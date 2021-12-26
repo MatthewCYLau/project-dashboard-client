@@ -4,10 +4,10 @@ import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
 import { API_BASE_URL } from "../../../constants";
-import { Project, AddProjectResponse } from "../interface";
+import { Project, AddProjectRequest, AddProjectResponse } from "../interface";
 
 export const addProject = (
-  project: Project,
+  project: AddProjectRequest,
   history: RouteComponentProps["history"]
 ) => {
   return async (dispatch: Dispatch<Actions>) => {

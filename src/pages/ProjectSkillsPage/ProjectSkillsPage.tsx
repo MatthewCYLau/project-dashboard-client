@@ -57,6 +57,17 @@ const ProjectSkillsPage: React.FunctionComponent<
     getSkills();
   }, []);
 
+  useEffect(() => {
+    setProjectSkills(
+      project.project_skills.map((v, i) => {
+        return {
+          name: v.name,
+          skill_id: v.skill_id,
+        };
+      })
+    );
+  }, [project]);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addProjectSkills(projectSkills, projectId, history);
