@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../../utils/api";
 import { RouteComponentProps } from "react-router";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
@@ -16,7 +16,7 @@ export const addProject = (
     });
     try {
       const { name } = project;
-      const { data } = await axios.post<AddProjectResponse>(
+      const { data } = await api.post<AddProjectResponse>(
         `${API_BASE_URL}/api/projects`,
         {
           name,
@@ -25,7 +25,6 @@ export const addProject = (
       dispatch({
         type: ActionType.ADD_PROJECT_SUCCESS,
       });
-      console.log(data);
       history.push(`/projects/${data.project_id}/project-skills`);
     } catch (err) {
       dispatch({
@@ -42,7 +41,7 @@ export const getProjectById = (id: string) => {
       type: ActionType.GET_PROJECT_REQUEST,
     });
     try {
-      const { data } = await axios.get<Project>(
+      const { data } = await api.get<Project>(
         `${API_BASE_URL}/api/projects/${id}`
       );
       dispatch({
