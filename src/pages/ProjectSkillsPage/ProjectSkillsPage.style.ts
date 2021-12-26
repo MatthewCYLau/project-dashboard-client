@@ -18,10 +18,11 @@ export default makeStyles(
         marginTop: spacing(1),
       },
       submit: {
-        margin: spacing(3, 0, 2),
+        margin: "0",
       },
       secondaryButton: {
         backgroundColor: palette.text.secondary,
+        margin: spacing(3, 0, 2),
       },
       loader: {
         position: "absolute",
