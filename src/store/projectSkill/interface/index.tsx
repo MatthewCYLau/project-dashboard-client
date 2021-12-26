@@ -1,4 +1,4 @@
 export interface ProjectSkill {
   skill_id: string;
-  name: string;
+  name: string | null;
 }

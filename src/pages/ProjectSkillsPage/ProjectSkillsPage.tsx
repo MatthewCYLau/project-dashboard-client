@@ -14,6 +14,7 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveCircle from "@material-ui/icons/RemoveCircle";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { ProjectSkill } from "../../store/projectSkill/interface";
 import useStyles from "./ProjectSkillsPage.style";
 import { RouteComponentProps } from "react-router";
 
@@ -21,16 +22,12 @@ interface MatchParams {
   id: string;
 }
 
-interface ProjectSkill {
-  skill_id: string;
-  name: string | null;
-}
-
 const ProjectSkillsPage: React.FunctionComponent<
   RouteComponentProps<MatchParams>
-> = ({ match }) => {
+> = ({ match, history }) => {
+  const projectId = match.params.id;
   const styles = useStyles();
-  const { getProjectById, getSkills } = useActions();
+  const { getProjectById, getSkills, addProjectSkills } = useActions();
   const [projectSkills, setProjectSkills] = useState<ProjectSkill[]>([]);
 
   const { loading, project } = useTypedSelector((state) => state.projectState);
@@ -46,7 +43,6 @@ const ProjectSkillsPage: React.FunctionComponent<
   };
 
   const getSkillIdBySkillName = (name: string | null) => {
-    console.log(name);
     const skilId = skills.find((skill) => skill.name === name)?._id;
     return skilId ? skilId : "";
   };
@@ -57,9 +53,14 @@ const ProjectSkillsPage: React.FunctionComponent<
     setProjectSkills(updatedProjectSkills);
   };
   useEffect(() => {
-    getProjectById(match.params.id);
+    getProjectById(projectId);
     getSkills();
   }, []);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    addProjectSkills(projectSkills, projectId, history);
+  };
 
   return loading ? (
     <CircularProgress className={styles.loader} />
@@ -73,7 +74,7 @@ const ProjectSkillsPage: React.FunctionComponent<
         <Typography component="h1" variant="h5">
           Add project skills
         </Typography>
-        <form className={styles.form} noValidate>
+        <form className={styles.form} noValidate onSubmit={(e) => onSubmit(e)}>
           <TextField
             variant="outlined"
             margin="normal"
