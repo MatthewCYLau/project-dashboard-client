@@ -6,6 +6,8 @@ import {
   Toolbar,
   IconButton,
   useMediaQuery,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
 import useStyles from "./Header.style";
 import { useTheme } from "@material-ui/core/styles";
@@ -20,15 +22,23 @@ import { ColorModeContext } from "../App/App";
 const Header: React.FunctionComponent = () => {
   const styles = useStyles();
   const theme = useTheme();
-  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
-  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+
   const context = React.useContext(ColorModeContext);
   const { isAuthenticated, loading } = useTypedSelector(
     (state) => state.authState
   );
   const { logout } = useActions();
 
-  const handleMenu = () => setShowMobileMenu(!showMobileMenu);
+  // set-up mobile menu
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const authLinks = (
     <nav>
@@ -123,15 +133,29 @@ const Header: React.FunctionComponent = () => {
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}
         {!loading && isMobile && (
-          <IconButton edge="start" aria-label="menu" onClick={handleMenu}>
-            {showMobileMenu ? (
+          <IconButton edge="start" aria-label="menu" onClick={handleClick}>
+            {open ? (
               <CloseIcon className={styles.menuIcon} />
             ) : (
               <MenuIcon className={styles.menuIcon} />
             )}
           </IconButton>
         )}
-        {!loading && isMobile && showMobileMenu && <div>Menu</div>}
+        {!loading && isMobile && open && (
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}>Logout</MenuItem>
+          </Menu>
+        )}
       </Toolbar>
     </AppBar>
   );
