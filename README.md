@@ -1,6 +1,12 @@
 # Project Dashboard Client
 
+A React TypeScript app which tracks skills used in various projects
+
 ![cicd cloud run workflow](https://github.com/MatthewCYLau/project-dashboard-client/actions/workflows/cicd-cloud-run.yml/badge.svg)
+
+App URL [here](https://project-dashboard-client-3i2mtbjusq-ew.a.run.app/)
+
+Back-end Python Flask project can be found [here](https://github.com/MatthewCYLau/python-flask-gcp)
 
 ## Build/run app locally
 
