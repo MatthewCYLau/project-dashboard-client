@@ -28,10 +28,27 @@ interface GetProjectErrorAction {
   payload: {};
 }
 
+interface GetProjectsRequestAction {
+  type: ActionType.GET_PROJECTS_REQUEST;
+}
+
+interface GetProjectsSuccessAction {
+  type: ActionType.GET_PROJECTS_SUCCESS;
+  payload: Project[];
+}
+
+interface GetProjectsErrorAction {
+  type: ActionType.GET_PROJECTS_ERROR;
+  payload: {};
+}
+
 export type Actions =
   | AddProjectRequestAction
   | AddProjectSuccessAction
   | AddProjectErrorAction
   | GetProjectRequestAction
   | GetProjectSuccessAction
-  | GetProjectErrorAction;
+  | GetProjectErrorAction
+  | GetProjectsRequestAction
+  | GetProjectsSuccessAction
+  | GetProjectsErrorAction;

@@ -56,3 +56,23 @@ export const getProjectById = (id: string) => {
     }
   };
 };
+
+export const getProjecs = () => {
+  return async (dispatch: Dispatch<Actions>) => {
+    dispatch({
+      type: ActionType.GET_PROJECTS_REQUEST,
+    });
+    try {
+      const { data } = await api.get<Project[]>(`${API_BASE_URL}/api/projects`);
+      dispatch({
+        type: ActionType.GET_PROJECTS_SUCCESS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: ActionType.GET_PROJECTS_ERROR,
+        payload: {},
+      });
+    }
+  };
+};

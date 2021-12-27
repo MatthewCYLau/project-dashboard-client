@@ -5,6 +5,7 @@ import { Project } from "../interface";
 interface ProjectState {
   loading: boolean;
   project: Project;
+  projects: Project[];
 }
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
     name: "",
     project_skills: [],
   },
+  projects: [],
 };
 
 const reducer = (
@@ -22,6 +24,7 @@ const reducer = (
   switch (action.type) {
     case ActionType.GET_PROJECT_REQUEST:
     case ActionType.ADD_PROJECT_REQUEST:
+    case ActionType.GET_PROJECTS_REQUEST:
       return {
         ...state,
         loading: true,
@@ -37,8 +40,15 @@ const reducer = (
         loading: false,
         project: action.payload,
       };
+    case ActionType.GET_PROJECTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        projects: action.payload,
+      };
     case ActionType.GET_PROJECT_ERROR:
     case ActionType.ADD_PROJECT_ERROR:
+    case ActionType.GET_PROJECTS_ERROR:
       return {
         ...state,
         loading: false,
