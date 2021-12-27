@@ -13,6 +13,7 @@ const initialState = {
   project: {
     name: "",
     project_skills: [],
+    _id: "",
   },
   projects: [],
 };
