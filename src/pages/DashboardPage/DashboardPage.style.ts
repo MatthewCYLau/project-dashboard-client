@@ -1,7 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(
-  ({ spacing, breakpoints, palette }) =>
+  ({ spacing, palette }) =>
     createStyles({
       root: {
         paddingTop: spacing(3),

@@ -1,15 +1,25 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { AppBar, Button, Toolbar, IconButton } from "@material-ui/core";
+import {
+  AppBar,
+  Button,
+  Toolbar,
+  IconButton,
+  useMediaQuery,
+} from "@material-ui/core";
 import useStyles from "./Header.style";
+import { useTheme } from "@material-ui/core/styles";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import MenuIcon from "@material-ui/icons/Menu";
 import { ColorModeContext } from "../App/App";
 
 const Header: React.FunctionComponent = () => {
   const styles = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const context = React.useContext(ColorModeContext);
   const { isAuthenticated, loading } = useTypedSelector(
     (state) => state.authState
@@ -105,9 +115,10 @@ const Header: React.FunctionComponent = () => {
             <i className="fas fa-code" /> Project Dashboard
           </Button>
         </div>
-        {!loading && (
+        {!loading && !isMobile && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}
+        {!loading && isMobile && <MenuIcon />}
       </Toolbar>
     </AppBar>
   );
