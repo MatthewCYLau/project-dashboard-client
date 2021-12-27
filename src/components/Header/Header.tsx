@@ -151,12 +151,48 @@ const Header: React.FunctionComponent = () => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose} component={Link} to="/login">
-              Login
-            </MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/sign-up">
-              Sign Up
-            </MenuItem>
+            {!isAuthenticated ? (
+              <Fragment>
+                <MenuItem onClick={handleClose} component={Link} to="/login">
+                  Login
+                </MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/sign-up">
+                  Sign Up
+                </MenuItem>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <MenuItem
+                  onClick={handleClose}
+                  component={Link}
+                  to="/dashboard"
+                >
+                  Dashboard
+                </MenuItem>
+                <MenuItem
+                  onClick={handleClose}
+                  component={Link}
+                  to="/add-project"
+                >
+                  Add Project
+                </MenuItem>
+                <MenuItem
+                  onClick={handleClose}
+                  component={Link}
+                  to="/add-skill"
+                >
+                  Add Skill
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    logout();
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </Fragment>
+            )}
           </Menu>
         )}
       </Toolbar>
