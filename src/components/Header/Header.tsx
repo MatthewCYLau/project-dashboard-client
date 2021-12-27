@@ -151,9 +151,12 @@ const Header: React.FunctionComponent = () => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to="/login">
+              Login
+            </MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to="/sign-up">
+              Sign Up
+            </MenuItem>
           </Menu>
         )}
       </Toolbar>
