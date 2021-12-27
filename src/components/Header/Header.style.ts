@@ -22,6 +22,9 @@ export default makeStyles(
         flexWrap: "wrap",
         minHeight: "64px",
       },
+      menuIcon: {
+        color: "white",
+      },
     }),
   { name: "Header" }
 );

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -14,17 +14,21 @@ import { useActions } from "../../hooks/useActions";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { ColorModeContext } from "../App/App";
 
 const Header: React.FunctionComponent = () => {
   const styles = useStyles();
   const theme = useTheme();
+  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const context = React.useContext(ColorModeContext);
   const { isAuthenticated, loading } = useTypedSelector(
     (state) => state.authState
   );
   const { logout } = useActions();
+
+  const handleMenu = () => setShowMobileMenu(!showMobileMenu);
 
   const authLinks = (
     <nav>
@@ -118,7 +122,16 @@ const Header: React.FunctionComponent = () => {
         {!loading && !isMobile && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}
-        {!loading && isMobile && <MenuIcon />}
+        {!loading && isMobile && (
+          <IconButton edge="start" aria-label="menu" onClick={handleMenu}>
+            {showMobileMenu ? (
+              <CloseIcon className={styles.menuIcon} />
+            ) : (
+              <MenuIcon className={styles.menuIcon} />
+            )}
+          </IconButton>
+        )}
+        {!loading && isMobile && showMobileMenu && <div>Menu</div>}
       </Toolbar>
     </AppBar>
   );
