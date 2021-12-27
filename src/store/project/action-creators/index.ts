@@ -4,10 +4,10 @@ import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
 import { API_BASE_URL } from "../../../constants";
-import { Project, AddProjectRequest, AddProjectResponse } from "../interface";
+import { Project, ProjectRequest, ProjectResponse } from "../interface";
 
 export const addProject = (
-  project: AddProjectRequest,
+  project: ProjectRequest,
   history: RouteComponentProps["history"]
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
@@ -16,7 +16,7 @@ export const addProject = (
     });
     try {
       const { name } = project;
-      const { data } = await api.post<AddProjectResponse>(
+      const { data } = await api.post<ProjectResponse>(
         `${API_BASE_URL}/api/projects`,
         {
           name,
@@ -51,6 +51,27 @@ export const getProjectById = (id: string) => {
     } catch (err) {
       dispatch({
         type: ActionType.GET_PROJECT_ERROR,
+        payload: {},
+      });
+    }
+  };
+};
+
+export const updateProjectById = (
+  id: string,
+  project: ProjectRequest,
+  history: RouteComponentProps["history"]
+) => {
+  return async (dispatch: Dispatch<Actions>) => {
+    try {
+      await api.put(`${API_BASE_URL}/api/projects/${id}`, project);
+      dispatch({
+        type: ActionType.UPDATE_PROJECT_SUCCESS,
+      });
+      history.push(`/dashboard`);
+    } catch (err) {
+      dispatch({
+        type: ActionType.UPDATE_PROJECT_ERROR,
         payload: {},
       });
     }

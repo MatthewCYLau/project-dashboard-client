@@ -8,4 +8,6 @@ export enum ActionType {
   GET_PROJECTS_REQUEST = "get_projects_request",
   GET_PROJECTS_SUCCESS = "get_projects_success",
   GET_PROJECTS_ERROR = "get_projects_error",
+  UPDATE_PROJECT_SUCCESS = "update_project_success",
+  UPDATE_PROJECT_ERROR = "update_project_error",
 }

@@ -42,6 +42,14 @@ interface GetProjectsErrorAction {
   payload: {};
 }
 
+interface UpdateProjectSuccessAction {
+  type: ActionType.UPDATE_PROJECT_SUCCESS;
+}
+
+interface UpdateProjectErrorAction {
+  type: ActionType.UPDATE_PROJECT_ERROR;
+}
+
 export type Actions =
   | AddProjectRequestAction
   | AddProjectSuccessAction
@@ -51,4 +59,6 @@ export type Actions =
   | GetProjectErrorAction
   | GetProjectsRequestAction
   | GetProjectsSuccessAction
-  | GetProjectsErrorAction;
+  | GetProjectsErrorAction
+  | UpdateProjectSuccessAction
+  | UpdateProjectErrorAction;

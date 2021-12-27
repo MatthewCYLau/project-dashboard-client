@@ -6,10 +6,10 @@ export interface Project {
   project_skills: ProjectSkill[];
 }
 
-export interface AddProjectRequest {
+export interface ProjectRequest {
   name: string;
 }
 
-export interface AddProjectResponse {
+export interface ProjectResponse {
   project_id: string;
 }

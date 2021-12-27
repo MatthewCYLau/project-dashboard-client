@@ -25,8 +25,9 @@ interface MatchParams {
 
 const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
   ({ history, match }) => {
+    const projectId = match.params.id;
     const styles = useStyles();
-    const { getProjectById } = useActions();
+    const { getProjectById, updateProjectById } = useActions();
     const { loading, project } = useTypedSelector(
       (state) => state.projectState
     );
@@ -36,14 +37,14 @@ const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
     };
 
     useEffect(() => {
-      getProjectById(match.params.id);
+      getProjectById(projectId);
     }, []);
 
     const formik = useFormik({
       enableReinitialize: true,
       initialValues,
       onSubmit: (values, actions) => {
-        // editProject(values, history);
+        updateProjectById(projectId, values, history);
         actions.setSubmitting(false);
       },
     });

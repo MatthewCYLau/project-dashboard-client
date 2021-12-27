@@ -20,21 +20,23 @@ import useStyles from "./DashboardPage.style";
 
 const DashboardPage: React.FunctionComponent = () => {
   const styles = useStyles();
-  const { loadUser, getProjecs } = useActions();
-  const { loading, user } = useTypedSelector((state) => state.authState);
+  const { getProjecs } = useActions();
+  const { loading } = useTypedSelector((state) => state.authState);
   const { projects } = useTypedSelector((state) => state.projectState);
 
   useEffect(() => {
     getProjecs();
-    loadUser();
     // eslint-disable-next-line
   }, []);
 
   return loading ? (
     <CircularProgress className={styles.loader} />
   ) : (
-    <Container component="main" maxWidth="lg">
+    <Container component="main" maxWidth="lg" className={styles.root}>
       <CssBaseline />
+      <Typography variant="h3" gutterBottom component="div">
+        Dashboard
+      </Typography>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
@@ -50,16 +52,17 @@ const DashboardPage: React.FunctionComponent = () => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  <Link
-                    to={`/projects/${project._id}`}
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
+                  <Link to={`/projects/${project._id}`} className={styles.link}>
                     {project.name}
                   </Link>
                 </TableCell>
                 <TableCell align="right">
                   {project.project_skills.map((projectSkill, i) => (
-                    <Chip key={i} label={projectSkill.name} />
+                    <Chip
+                      key={i}
+                      label={projectSkill.name}
+                      className={styles.chip}
+                    />
                   ))}
                 </TableCell>
               </TableRow>
