@@ -55,6 +55,7 @@ export const register = (authBody: AuthBody) => {
         type: ActionType.REGISTRATION_SUCCESS,
         payload: data,
       });
+      dispatch(loadUser());
     } catch (err) {
       dispatch({
         type: ActionType.REGISTRATION_FAILED,
