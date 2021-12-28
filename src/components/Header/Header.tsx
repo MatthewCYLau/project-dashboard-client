@@ -30,7 +30,9 @@ const Header: React.FunctionComponent = () => {
   const { logout } = useActions();
 
   // set-up mobile menu
-  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const isMobile = useMediaQuery(
+    theme.breakpoints.down(isAuthenticated ? "md" : "sm")
+  );
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {

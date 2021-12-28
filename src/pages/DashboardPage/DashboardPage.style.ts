@@ -1,7 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(
-  ({ spacing, palette }) =>
+  ({ spacing, palette, breakpoints }) =>
     createStyles({
       root: {
         paddingTop: spacing(3),
@@ -17,6 +17,10 @@ export default makeStyles(
       chip: {
         marginLeft: "3px",
         marginRight: "3px",
+        [breakpoints.down("sm")]: {
+          marginTop: "2px",
+          marginBottom: "2px",
+        },
       },
     }),
   { name: "DashboardPage" }
