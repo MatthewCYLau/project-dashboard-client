@@ -6,7 +6,7 @@ const PieChart = (props) => {
   const cache = useRef(props.data);
   const createPie = d3
     .pie()
-    .value((d) => d.value)
+    .value((d) => d.count)
     .sort(null);
   const createArc = d3
     .arc()
@@ -66,7 +66,7 @@ const PieChart = (props) => {
       .append("text")
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
-      .text((d) => d.data.label)
+      .text((d) => d.data._id)
       .style("fill", "black")
       .style("font-size", 12)
       .attr("transform", (d) => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -12,6 +12,8 @@ import {
   Chip,
   Typography,
 } from "@material-ui/core";
+import { API_BASE_URL } from "../../constants";
+import api from "../../utils/api";
 import TableRow from "@mui/material/TableRow";
 import PieChart from "../../components/PieChart";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -19,14 +21,30 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import useStyles from "./DashboardPage.style";
 
+interface ProjectSkillsCount {
+  _id: string;
+  count: number;
+}
+
 const DashboardPage: React.FunctionComponent = () => {
   const styles = useStyles();
   const { getProjecs } = useActions();
+  const [projectSkillsCount, setProjectSkillsCount] = useState<
+    ProjectSkillsCount[]
+  >([]);
   const { loading } = useTypedSelector((state) => state.authState);
   const { projects } = useTypedSelector((state) => state.projectState);
 
+  const getProjectSkillsCount = async () => {
+    const { data } = await api.get<ProjectSkillsCount[]>(
+      `${API_BASE_URL}/api/project-skills-count`
+    );
+    setProjectSkillsCount(data);
+  };
+
   useEffect(() => {
     getProjecs();
+    getProjectSkillsCount();
     // eslint-disable-next-line
   }, []);
 
@@ -40,24 +58,7 @@ const DashboardPage: React.FunctionComponent = () => {
       </Typography>
       <Container className={styles.pieChartContainer}>
         <PieChart
-          data={[
-            {
-              label: "Python",
-              value: 2,
-            },
-            {
-              label: "React",
-              value: 4,
-            },
-            {
-              label: "Scala",
-              value: 5,
-            },
-            {
-              label: "JavaScript",
-              value: 7,
-            },
-          ]}
+          data={projectSkillsCount}
           width={240}
           height={240}
           innerRadius={60}
