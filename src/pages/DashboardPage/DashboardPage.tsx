@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import TableRow from "@mui/material/TableRow";
+import PieChart from "../../components/PieChart";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
@@ -37,6 +38,9 @@ const DashboardPage: React.FunctionComponent = () => {
       <Typography variant="h3" gutterBottom component="div">
         Dashboard
       </Typography>
+      <Container>
+        <PieChart />
+      </Container>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
