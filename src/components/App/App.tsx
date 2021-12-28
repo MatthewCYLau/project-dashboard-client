@@ -51,6 +51,9 @@ const App = () => {
 const AppWithTheme = () => {
   const [mode, setMode] = React.useState("light");
   const toggleColorMode = () => {
+    if (["sign-up", "login"].some((v) => window.location.href.includes(v))) {
+      setAuthToken("");
+    }
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
 
