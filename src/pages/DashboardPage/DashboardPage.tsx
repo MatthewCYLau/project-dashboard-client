@@ -39,7 +39,30 @@ const DashboardPage: React.FunctionComponent = () => {
         Dashboard
       </Typography>
       <Container>
-        <PieChart />
+        <PieChart
+          data={[
+            {
+              label: "Python",
+              value: 2,
+            },
+            {
+              label: "React",
+              value: 4,
+            },
+            {
+              label: "Scala",
+              value: 5,
+            },
+            {
+              label: "JavaScript",
+              value: 7,
+            },
+          ]}
+          width={200}
+          height={200}
+          innerRadius={60}
+          outerRadius={100}
+        />
       </Container>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
