@@ -22,6 +22,12 @@ export default makeStyles(
           marginBottom: "2px",
         },
       },
+      pieChartContainer: {
+        display: "flex",
+        justifyContent: "center",
+        paddingTop: "10px",
+        paddingBottom: "20px",
+      },
     }),
   { name: "DashboardPage" }
 );

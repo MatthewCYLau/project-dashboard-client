@@ -38,7 +38,7 @@ const DashboardPage: React.FunctionComponent = () => {
       <Typography variant="h3" gutterBottom component="div">
         Dashboard
       </Typography>
-      <Container>
+      <Container className={styles.pieChartContainer}>
         <PieChart
           data={[
             {
@@ -58,10 +58,10 @@ const DashboardPage: React.FunctionComponent = () => {
               value: 7,
             },
           ]}
-          width={200}
-          height={200}
+          width={240}
+          height={240}
           innerRadius={60}
-          outerRadius={100}
+          outerRadius={120}
         />
       </Container>
       <TableContainer component={Paper}>

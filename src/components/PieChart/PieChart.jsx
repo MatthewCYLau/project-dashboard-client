@@ -58,7 +58,8 @@ const PieChart = (props) => {
       .tween("text", (d, i, nodes) => {
         const interpolator = d3.interpolate(prevData[i], d);
 
-        return (t) => d3.select(nodes[i]).text(format(interpolator(t).value));
+        return (t) =>
+          d3.select(nodes[i]).text(Math.round(format(interpolator(t).value)));
       });
 
     groupWithUpdate
@@ -70,7 +71,7 @@ const PieChart = (props) => {
       .style("font-size", 12)
       .attr("transform", (d) => {
         const [x, y] = createArc.centroid(d);
-        return `translate(${x + 10}, ${y + 10})`;
+        return `translate(${x + 10}, ${y + 12})`;
       });
 
     cache.current = props.data;
