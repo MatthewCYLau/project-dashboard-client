@@ -13,93 +13,83 @@ import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import useStyles from "./ProjectPage.style";
-import { RouteComponentProps } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 
 interface AddProjectFormValues {
   name: string;
 }
 
-interface MatchParams {
-  id: string;
-}
+const ProjectPage: React.FunctionComponent = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const styles = useStyles();
+  const { getProjectById, updateProjectById } = useActions();
+  const { loading, project } = useTypedSelector((state) => state.projectState);
 
-const ProjectPage: React.FunctionComponent<RouteComponentProps<MatchParams>> =
-  ({ history, match }) => {
-    const projectId = match.params.id;
-    const styles = useStyles();
-    const { getProjectById, updateProjectById } = useActions();
-    const { loading, project } = useTypedSelector(
-      (state) => state.projectState
-    );
+  const initialValues: AddProjectFormValues = {
+    name: project.name,
+  };
 
-    const initialValues: AddProjectFormValues = {
-      name: project.name,
-    };
+  useEffect(() => {
+    id && getProjectById(id);
+  }, []);
 
-    useEffect(() => {
-      getProjectById(projectId);
-    }, []);
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues,
+    onSubmit: (values, actions) => {
+      id && updateProjectById(id, values, navigate);
+      actions.setSubmitting(false);
+    },
+  });
 
-    const formik = useFormik({
-      enableReinitialize: true,
-      initialValues,
-      onSubmit: (values, actions) => {
-        updateProjectById(projectId, values, history);
-        actions.setSubmitting(false);
-      },
-    });
-
-    return loading ? (
-      <CircularProgress className={styles.loader} />
-    ) : (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={styles.paper}>
-          <Avatar className={styles.avatar}>
-            <AddCircleIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Update project
-          </Typography>
-          <form
-            className={styles.form}
-            noValidate
-            onSubmit={formik.handleSubmit}
-          >
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="name"
-              label="Project name"
-              name="name"
-              autoFocus
-              value={formik.values.name}
-              onChange={formik.handleChange}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={styles.submit}
-            >
-              Save Project
-            </Button>
-          </form>
+  return loading ? (
+    <CircularProgress className={styles.loader} />
+  ) : (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={styles.paper}>
+        <Avatar className={styles.avatar}>
+          <AddCircleIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Update project
+        </Typography>
+        <form className={styles.form} noValidate onSubmit={formik.handleSubmit}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="name"
+            label="Project name"
+            name="name"
+            autoFocus
+            value={formik.values.name}
+            onChange={formik.handleChange}
+          />
           <Button
+            type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={styles.secondaryButton}
-            onClick={() => history.push(`${match.url}/project-skills`)}
+            className={styles.submit}
           >
-            Update Project Skills
+            Save Project
           </Button>
-        </div>
-      </Container>
-    );
-  };
+        </form>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={styles.secondaryButton}
+          onClick={() => navigate(`projects/${id}/project-skills`)}
+        >
+          Update Project Skills
+        </Button>
+      </div>
+    </Container>
+  );
+};
 
 export default ProjectPage;

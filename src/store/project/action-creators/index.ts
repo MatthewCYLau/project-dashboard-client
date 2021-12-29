@@ -1,5 +1,5 @@
 import api from "../../../utils/api";
-import { RouteComponentProps } from "react-router";
+import { NavigateFunction } from "react-router-dom";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
@@ -8,7 +8,7 @@ import { Project, ProjectRequest, ProjectResponse } from "../interface";
 
 export const addProject = (
   project: ProjectRequest,
-  history: RouteComponentProps["history"]
+  navigate: NavigateFunction
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
     dispatch({
@@ -25,7 +25,7 @@ export const addProject = (
       dispatch({
         type: ActionType.ADD_PROJECT_SUCCESS,
       });
-      history.push(`/projects/${data.project_id}/project-skills`);
+      navigate(`/projects/${data.project_id}/project-skills`);
     } catch (err) {
       dispatch({
         type: ActionType.ADD_PROJECT_ERROR,
@@ -60,7 +60,7 @@ export const getProjectById = (id: string) => {
 export const updateProjectById = (
   id: string,
   project: ProjectRequest,
-  history: RouteComponentProps["history"]
+  navigate: NavigateFunction
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
     try {
@@ -68,7 +68,7 @@ export const updateProjectById = (
       dispatch({
         type: ActionType.UPDATE_PROJECT_SUCCESS,
       });
-      history.push(`/dashboard`);
+      navigate("/dashboard");
     } catch (err) {
       dispatch({
         type: ActionType.UPDATE_PROJECT_ERROR,

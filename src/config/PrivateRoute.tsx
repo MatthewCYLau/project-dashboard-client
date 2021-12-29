@@ -1,32 +1,20 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 
 type PrivateRouteProps = {
   component: React.ComponentType<any>;
-  exact: boolean;
-  path: string;
 };
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({
   component: Component,
-  ...rest
 }) => {
   const { isAuthenticated, loading } = useTypedSelector(
     (state) => state.authState
   );
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        !isAuthenticated && !loading ? (
-          <Redirect to="/login" />
-        ) : (
-          <Component {...props} />
-        )
-      }
-    />
-  );
+  if (loading) return <div>Loading</div>;
+  if (isAuthenticated) return <Component />;
+  return <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

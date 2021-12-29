@@ -1,5 +1,5 @@
 import api from "../../../utils/api";
-import { RouteComponentProps } from "react-router";
+import { HistoryRouterProps } from "react-router-dom";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
@@ -8,7 +8,7 @@ import { AddSkillBody, SkillsList } from "../interface";
 
 export const addSkill = (
   addSkillBody: AddSkillBody,
-  history: RouteComponentProps["history"]
+  history: HistoryRouterProps["history"]
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
     try {

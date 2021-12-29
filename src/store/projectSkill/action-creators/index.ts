@@ -1,5 +1,5 @@
 import api from "../../../utils/api";
-import { RouteComponentProps } from "react-router";
+import { HistoryRouterProps } from "react-router-dom";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
@@ -9,7 +9,7 @@ import { ProjectSkill } from "../interface";
 export const addProjectSkills = (
   projectSkills: ProjectSkill[],
   projectId: string,
-  history: RouteComponentProps["history"]
+  history: HistoryRouterProps["history"]
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
     try {

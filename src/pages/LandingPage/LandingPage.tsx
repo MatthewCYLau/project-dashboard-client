@@ -1,4 +1,4 @@
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import React from "react";
 import { Grid, Button } from "@material-ui/core";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -8,7 +8,7 @@ const LandingPage: React.FunctionComponent = () => {
   const styles = useStyles();
   const { isAuthenticated } = useTypedSelector((state) => state.authState);
   if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+    return <Navigate to="/dashboard" />;
   }
   return (
     <section className={styles.landing}>

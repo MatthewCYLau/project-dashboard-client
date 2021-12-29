@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import store from "../../store/store";
 import { useActions } from "../../hooks/useActions";
@@ -8,7 +8,17 @@ import { ActionType } from "../../store/auth/action-types";
 import setAuthToken from "../../utils/setAuthToken";
 import useStyles from "./App.style";
 import createTheme from "../../config/Theme";
-import Routes from "../../config/Routes";
+import PrivateRoute from "../../config/PrivateRoute";
+import LandingPage from "../../pages/LandingPage";
+import DashboardPage from "../../pages/DashboardPage";
+import LoginPage from "../../pages/LoginPage";
+import RegistrationPage from "../../pages/RegistrationPage";
+import AddSkillPage from "../../pages/AddSkillPage";
+import AddProjectPage from "../../pages/AddProjectPage";
+import ProjectPage from "../../pages/ProjectPage";
+import ProjectSkillsPage from "../../pages/ProjectSkillsPage";
+import NotFoundPage from "../../pages/NotFoundPage";
+
 import Header from "../Header";
 import Alert from "../Alert";
 
@@ -40,9 +50,32 @@ const App = () => {
       <div className={styles.root}>
         <Header />
         <Alert />
-        <Switch>
-          <Route component={Routes} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="sign-up" element={<RegistrationPage />} />
+          <Route
+            path="dashboard"
+            element={<PrivateRoute component={DashboardPage} />}
+          />
+          <Route
+            path="add-skill"
+            element={<PrivateRoute component={AddSkillPage} />}
+          />
+          <Route
+            path="add-project"
+            element={<PrivateRoute component={AddProjectPage} />}
+          />
+          <Route
+            path="projects/:id"
+            element={<PrivateRoute component={ProjectPage} />}
+          />
+          <Route
+            path="projects/:id/project-skills"
+            element={<PrivateRoute component={ProjectSkillsPage} />}
+          />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Routes>
       </div>
     </Router>
   );

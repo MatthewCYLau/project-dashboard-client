@@ -16,16 +16,13 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { ProjectSkill } from "../../store/projectSkill/interface";
 import useStyles from "./ProjectSkillsPage.style";
-import { RouteComponentProps } from "react-router";
+import { HistoryRouterProps, useParams } from "react-router-dom";
 
-interface MatchParams {
-  id: string;
-}
-
-const ProjectSkillsPage: React.FunctionComponent<
-  RouteComponentProps<MatchParams>
-> = ({ match, history }) => {
-  const projectId = match.params.id;
+const ProjectSkillsPage: React.FunctionComponent<HistoryRouterProps> = ({
+  history,
+}) => {
+  const { id } = useParams();
+  const projectId = "";
   const styles = useStyles();
   const { getProjectById, getSkills, addProjectSkills } = useActions();
   const [projectSkills, setProjectSkills] = useState<ProjectSkill[]>([]);

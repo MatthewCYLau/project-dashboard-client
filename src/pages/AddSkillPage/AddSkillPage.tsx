@@ -11,13 +11,13 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
 import useStyles from "./AddSkillPage.style";
-import { RouteComponentProps } from "react-router";
+import { HistoryRouterProps } from "react-router-dom";
 
 interface AddSkillFormValues {
   name: string;
 }
 
-const AddSkillPage: React.FunctionComponent<RouteComponentProps> = ({
+const AddSkillPage: React.FunctionComponent<HistoryRouterProps> = ({
   history,
 }) => {
   const styles = useStyles();
