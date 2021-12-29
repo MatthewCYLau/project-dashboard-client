@@ -51,7 +51,8 @@ const ProjectSkillsPage: React.FunctionComponent = () => {
   useEffect(() => {
     getProjectById(projectId);
     getSkills();
-  }, []);
+    // eslint-disable-next-line
+  }, [projectId]);
 
   useEffect(() => {
     setProjectSkills(

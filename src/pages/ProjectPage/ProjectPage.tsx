@@ -32,7 +32,8 @@ const ProjectPage: React.FunctionComponent = () => {
 
   useEffect(() => {
     id && getProjectById(id);
-  }, []);
+    // eslint-disable-next-line
+  }, [id]);
 
   const formik = useFormik({
     enableReinitialize: true,

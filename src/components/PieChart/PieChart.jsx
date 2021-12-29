@@ -75,7 +75,7 @@ const PieChart = (props) => {
       });
 
     cache.current = props.data;
-  }, [props.data]);
+  }, [props.data, colors, createArc, createPie, format]);
 
   return (
     <svg width={props.width} height={props.height}>
