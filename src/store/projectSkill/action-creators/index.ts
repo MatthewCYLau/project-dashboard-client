@@ -1,5 +1,5 @@
 import api from "../../../utils/api";
-import { HistoryRouterProps } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
@@ -9,7 +9,7 @@ import { ProjectSkill } from "../interface";
 export const addProjectSkills = (
   projectSkills: ProjectSkill[],
   projectId: string,
-  history: HistoryRouterProps["history"]
+  navigate: NavigateFunction
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
     try {
@@ -20,7 +20,7 @@ export const addProjectSkills = (
       dispatch({
         type: ActionType.ADD_PROJECT_SKILL_SUCCESS,
       });
-      history.push("/dashboard");
+      navigate("/dashboard");
     } catch (err) {
       dispatch({
         type: ActionType.ADD_PROJECT_SKILL_ERROR,

@@ -83,7 +83,7 @@ const ProjectPage: React.FunctionComponent = () => {
           variant="contained"
           color="primary"
           className={styles.secondaryButton}
-          onClick={() => navigate(`projects/${id}/project-skills`)}
+          onClick={() => navigate(`/projects/${id}/project-skills`)}
         >
           Update Project Skills
         </Button>

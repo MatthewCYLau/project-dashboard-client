@@ -11,17 +11,16 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
 import useStyles from "./AddProjectPage.style";
-import { HistoryRouterProps } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface AddProjectFormValues {
   name: string;
 }
 
-const AddProjectPage: React.FunctionComponent<HistoryRouterProps> = ({
-  history,
-}) => {
+const AddProjectPage: React.FunctionComponent = () => {
   const styles = useStyles();
   const { addProject } = useActions();
+  const navigate = useNavigate();
 
   const initialValues: AddProjectFormValues = {
     name: "",
@@ -30,7 +29,7 @@ const AddProjectPage: React.FunctionComponent<HistoryRouterProps> = ({
   const formik = useFormik({
     initialValues,
     onSubmit: (values, actions) => {
-      addProject(values, history);
+      addProject(values, navigate);
       actions.setSubmitting(false);
     },
   });

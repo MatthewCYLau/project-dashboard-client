@@ -11,16 +11,15 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
 import useStyles from "./AddSkillPage.style";
-import { HistoryRouterProps } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface AddSkillFormValues {
   name: string;
 }
 
-const AddSkillPage: React.FunctionComponent<HistoryRouterProps> = ({
-  history,
-}) => {
+const AddSkillPage: React.FunctionComponent = () => {
   const styles = useStyles();
+  const navigate = useNavigate();
   const { addSkill } = useActions();
 
   const initialValues: AddSkillFormValues = {
@@ -30,7 +29,7 @@ const AddSkillPage: React.FunctionComponent<HistoryRouterProps> = ({
   const formik = useFormik({
     initialValues,
     onSubmit: (values, actions) => {
-      addSkill(values, history);
+      addSkill(values, navigate);
       actions.setSubmitting(false);
     },
   });

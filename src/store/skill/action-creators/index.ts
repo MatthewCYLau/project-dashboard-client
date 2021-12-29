@@ -1,5 +1,5 @@
 import api from "../../../utils/api";
-import { HistoryRouterProps } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
@@ -8,7 +8,7 @@ import { AddSkillBody, SkillsList } from "../interface";
 
 export const addSkill = (
   addSkillBody: AddSkillBody,
-  history: HistoryRouterProps["history"]
+  navigate: NavigateFunction
 ) => {
   return async (dispatch: Dispatch<Actions>) => {
     try {
@@ -20,7 +20,7 @@ export const addSkill = (
         type: ActionType.ADD_SKILL_SUCCESS,
         payload: {},
       });
-      history.push("/dashboard");
+      navigate("/dashboard");
     } catch (err) {
       dispatch({
         type: ActionType.ADD_SKILL_ERROR,

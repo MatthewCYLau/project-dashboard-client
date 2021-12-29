@@ -16,16 +16,15 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { ProjectSkill } from "../../store/projectSkill/interface";
 import useStyles from "./ProjectSkillsPage.style";
-import { HistoryRouterProps, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const ProjectSkillsPage: React.FunctionComponent<HistoryRouterProps> = ({
-  history,
-}) => {
+const ProjectSkillsPage: React.FunctionComponent = () => {
   const { id } = useParams();
-  const projectId = "";
+  const projectId = id ? id : "";
   const styles = useStyles();
   const { getProjectById, getSkills, addProjectSkills } = useActions();
   const [projectSkills, setProjectSkills] = useState<ProjectSkill[]>([]);
+  const navigate = useNavigate();
 
   const { loading, project } = useTypedSelector((state) => state.projectState);
   const { skills } = useTypedSelector((state) => state.skillState);
@@ -67,7 +66,7 @@ const ProjectSkillsPage: React.FunctionComponent<HistoryRouterProps> = ({
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addProjectSkills(projectSkills, projectId, history);
+    addProjectSkills(projectSkills, projectId, navigate);
   };
 
   return loading ? (
@@ -96,7 +95,7 @@ const ProjectSkillsPage: React.FunctionComponent<HistoryRouterProps> = ({
             value={project.name}
           />
           {projectSkills.map((v, i) => (
-            <div className={styles.projectSkillContainer}>
+            <div key={i} className={styles.projectSkillContainer}>
               <Autocomplete
                 key={i}
                 value={projectSkills[i].name}
