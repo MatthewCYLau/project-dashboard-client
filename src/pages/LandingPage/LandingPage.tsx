@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import React from "react";
 import { Grid, Button } from "@material-ui/core";
+import Meta from "../../components/Meta";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import useStyles from "./LandingPage.style";
 
@@ -12,6 +13,7 @@ const LandingPage: React.FunctionComponent = () => {
   }
   return (
     <section className={styles.landing}>
+      <Meta title="Project Dashboard" />
       <div className={styles.darkOverlay}>
         <div className={styles.landingInner}>
           <h1>Project Dashboard</h1>

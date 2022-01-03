@@ -7,6 +7,7 @@ import {
   Avatar,
   CssBaseline,
 } from "@material-ui/core";
+import Meta from "../../components/Meta";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
@@ -36,6 +37,7 @@ const AddProjectPage: React.FunctionComponent = () => {
 
   return (
     <Container component="main" maxWidth="xs">
+      <Meta title="Add Project" />
       <CssBaseline />
       <div className={styles.paper}>
         <Avatar className={styles.avatar}>

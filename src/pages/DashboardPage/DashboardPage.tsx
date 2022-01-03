@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import { API_BASE_URL } from "../../constants";
 import api from "../../utils/api";
+import Meta from "../../components/Meta";
 import TableRow from "@mui/material/TableRow";
 import PieChart from "../../components/PieChart";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -52,6 +53,7 @@ const DashboardPage: React.FunctionComponent = () => {
     <CircularProgress className={styles.loader} />
   ) : (
     <Container component="main" maxWidth="lg" className={styles.root}>
+      <Meta title="Project Dashboard" />
       <CssBaseline />
       <Typography variant="h3" gutterBottom component="div">
         Dashboard

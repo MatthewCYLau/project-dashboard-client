@@ -11,29 +11,28 @@ import {
   Link as MaterialUILink,
 } from "@material-ui/core";
 import Meta from "../../components/Meta";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Email from "@material-ui/icons/Email";
 import CopyRight from "../../components/CopyRight";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import useStyles from "./LoginPage.style";
+import useStyles from "./EmailVerificationPage.style";
 
-interface LoginFormValues {
-  email: string;
-  password: string;
+interface EmailVerificationFormValues {
+  code: string;
 }
 
-const LoginPage: React.FunctionComponent = () => {
+const EmailVerificationPage: React.FunctionComponent = () => {
   const styles = useStyles();
-  const { login } = useActions();
   const { isAuthenticated } = useTypedSelector((state) => state.authState);
 
-  const initialValues: LoginFormValues = { email: "", password: "" };
+  const initialValues: EmailVerificationFormValues = {
+    code: "",
+  };
 
   const formik = useFormik({
     initialValues,
     onSubmit: (values, actions) => {
-      login(values);
       actions.setSubmitting(false);
     },
   });
@@ -44,15 +43,15 @@ const LoginPage: React.FunctionComponent = () => {
 
   return (
     <Grid container component="main" className={styles.root}>
-      <Meta title="Project Dashboard" />
+      <Meta title="Verify Email" />
       <Grid item xs={false} sm={4} md={7} className={styles.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={styles.paper}>
           <Avatar className={styles.avatar}>
-            <LockOutlinedIcon />
+            <Email />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Verify Email
           </Typography>
           <form
             className={styles.form}
@@ -64,25 +63,11 @@ const LoginPage: React.FunctionComponent = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={formik.values.email}
-              onChange={formik.handleChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={formik.values.password}
+              id="code"
+              label="Email Verification Code"
+              name="code"
+              autoComplete="code"
+              value={formik.values.code}
               onChange={formik.handleChange}
             />
             <Button
@@ -92,12 +77,12 @@ const LoginPage: React.FunctionComponent = () => {
               variant="contained"
               color="primary"
             >
-              Login In
+              Submit
             </Button>
             <Grid container>
               <Grid item>
-                <MaterialUILink href="/sign-up" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <MaterialUILink href="/" variant="body2">
+                  {"Resend code"}
                 </MaterialUILink>
               </Grid>
             </Grid>
@@ -111,4 +96,4 @@ const LoginPage: React.FunctionComponent = () => {
   );
 };
 
-export default LoginPage;
+export default EmailVerificationPage;

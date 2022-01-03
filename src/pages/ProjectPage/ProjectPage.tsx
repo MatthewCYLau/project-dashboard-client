@@ -8,6 +8,7 @@ import {
   CssBaseline,
 } from "@material-ui/core";
 import CircularProgress from "@mui/material/CircularProgress";
+import Meta from "../../components/Meta";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
@@ -48,6 +49,7 @@ const ProjectPage: React.FunctionComponent = () => {
     <CircularProgress className={styles.loader} />
   ) : (
     <Container component="main" maxWidth="xs">
+      <Meta title={`Project - ${project.name}`} />
       <CssBaseline />
       <div className={styles.paper}>
         <Avatar className={styles.avatar}>

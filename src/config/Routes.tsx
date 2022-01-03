@@ -5,6 +5,7 @@ import LandingPage from "../pages/LandingPage";
 import DashboardPage from "../pages/DashboardPage";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
+import EmailVerificationPage from "../pages/EmailVerificationPage";
 import AddSkillPage from "../pages/AddSkillPage";
 import AddProjectPage from "../pages/AddProjectPage";
 import ProjectPage from "../pages/ProjectPage";
@@ -17,6 +18,8 @@ const AppRoutes = () => {
       <Route path="/" element={<LandingPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="sign-up" element={<RegistrationPage />} />
+      <Route path="verify-email" element={<EmailVerificationPage />} />
+
       <Route
         path="dashboard"
         element={<PrivateRoute component={DashboardPage} />}
