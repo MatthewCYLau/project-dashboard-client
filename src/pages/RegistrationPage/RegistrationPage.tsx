@@ -10,6 +10,7 @@ import {
   Box,
   Link as MaterialUILink,
 } from "@material-ui/core";
+import Meta from "../../components/Meta";
 import Create from "@material-ui/icons/Create";
 import CopyRight from "../../components/CopyRight";
 import { useFormik } from "formik";
@@ -53,6 +54,7 @@ const RegistrationPage: React.FunctionComponent = () => {
 
   return (
     <Grid container component="main" className={styles.root}>
+      <Meta title="Project Dashboard" />
       <Grid item xs={false} sm={4} md={7} className={styles.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={styles.paper}>

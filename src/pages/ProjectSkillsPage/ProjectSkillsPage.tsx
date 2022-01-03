@@ -12,6 +12,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveCircle from "@material-ui/icons/RemoveCircle";
+import Meta from "../../components/Meta";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { ProjectSkill } from "../../store/projectSkill/interface";
@@ -74,6 +75,7 @@ const ProjectSkillsPage: React.FunctionComponent = () => {
     <CircularProgress className={styles.loader} />
   ) : (
     <Container component="main" maxWidth="xs">
+      <Meta title="Add Project Skills" />
       <CssBaseline />
       <div className={styles.paper}>
         <Avatar className={styles.avatar}>
