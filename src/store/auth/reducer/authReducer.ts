@@ -7,6 +7,7 @@ interface AuthState {
   isAuthenticated: boolean;
   loading: boolean;
   user: User | null;
+  registrationEmail: string;
 }
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   isAuthenticated: false,
   loading: true,
   user: null,
+  registrationEmail: "",
 };
 
 const reducer = (
@@ -30,6 +32,12 @@ const reducer = (
       };
 
     case ActionType.REGISTRATION_SUCCESS:
+      return {
+        ...state,
+        token: action.payload.token.token,
+        registrationEmail: action.payload.registrationEmail,
+        loading: false,
+      };
     case ActionType.LOGIN_SUCCESS:
       return {
         ...state,

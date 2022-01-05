@@ -24,7 +24,9 @@ interface EmailVerificationFormValues {
 
 const EmailVerificationPage: React.FunctionComponent = () => {
   const styles = useStyles();
-  const { isAuthenticated } = useTypedSelector((state) => state.authState);
+  const { isAuthenticated, registrationEmail } = useTypedSelector(
+    (state) => state.authState
+  );
 
   const initialValues: EmailVerificationFormValues = {
     code: "",
@@ -58,6 +60,18 @@ const EmailVerificationPage: React.FunctionComponent = () => {
             noValidate
             onSubmit={formik.handleSubmit}
           >
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoFocus
+              disabled={true}
+              value={registrationEmail}
+            />
             <TextField
               variant="outlined"
               margin="normal"

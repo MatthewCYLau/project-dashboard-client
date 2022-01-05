@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { NavigateFunction } from "react-router-dom";
 import api from "../../../utils/api";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
@@ -40,7 +41,7 @@ export const login = ({ email = "", password = "" }: AuthBody) => {
   };
 };
 
-export const register = (authBody: AuthBody) => {
+export const register = (authBody: AuthBody, navigate: NavigateFunction) => {
   return async (dispatch: Dispatch<Actions> | any) => {
     try {
       const { email, password } = authBody;
@@ -53,9 +54,12 @@ export const register = (authBody: AuthBody) => {
       );
       dispatch({
         type: ActionType.REGISTRATION_SUCCESS,
-        payload: data,
+        payload: {
+          token: data,
+          registrationEmail: email,
+        },
       });
-      dispatch(loadUser());
+      navigate("/verify-email");
     } catch (err) {
       dispatch({
         type: ActionType.REGISTRATION_FAILED,

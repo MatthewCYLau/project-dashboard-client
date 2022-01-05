@@ -10,6 +10,7 @@ import {
   Box,
   Link as MaterialUILink,
 } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
 import Meta from "../../components/Meta";
 import Create from "@material-ui/icons/Create";
 import CopyRight from "../../components/CopyRight";
@@ -28,6 +29,7 @@ const RegistrationPage: React.FunctionComponent = () => {
   const styles = useStyles();
   const { register, setAlert } = useActions();
   const { isAuthenticated } = useTypedSelector((state) => state.authState);
+  const navigate = useNavigate();
 
   const initialValues: RegistrationFormValues = {
     email: "",
@@ -41,7 +43,7 @@ const RegistrationPage: React.FunctionComponent = () => {
       if (values.password !== values.password2) {
         setAlert("Passwords do not match");
       } else {
-        register({ email: values.email, password: values.password });
+        register({ email: values.email, password: values.password }, navigate);
       }
 
       actions.setSubmitting(false);

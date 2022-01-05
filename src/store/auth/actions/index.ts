@@ -11,7 +11,10 @@ interface AuthErrorAction {
 
 interface RegistrationSuccessAction {
   type: ActionType.REGISTRATION_SUCCESS;
-  payload: Token;
+  payload: {
+    token: Token;
+    registrationEmail: string;
+  };
 }
 
 interface RegistrationFailedAction {
