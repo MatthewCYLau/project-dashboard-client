@@ -35,6 +35,18 @@ interface LogoutAction {
   type: ActionType.LOGOUT;
 }
 
+interface VerifyEmailSuccessAction {
+  type: ActionType.VERIFY_EMAIL_SUCCESS;
+}
+
+interface VerifyEmailFailedAction {
+  type: ActionType.VERIFY_EMAIL_FAILED;
+}
+
+interface TriggerVerificationAction {
+  type: ActionType.TRIGGER_VERIFICATION_SUCCESS;
+}
+
 export type Actions =
   | UserLoadedAction
   | AuthErrorAction
@@ -42,4 +54,7 @@ export type Actions =
   | RegistrationFailedAction
   | LoginSuccessAction
   | LoginFailedAction
-  | LogoutAction;
+  | LogoutAction
+  | VerifyEmailSuccessAction
+  | VerifyEmailFailedAction
+  | TriggerVerificationAction;

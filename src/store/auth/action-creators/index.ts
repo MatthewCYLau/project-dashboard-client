@@ -4,7 +4,7 @@ import api from "../../../utils/api";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
-import { AuthBody, User, Token } from "../interface";
+import { AuthBody, User, Token, VerifyEmailBody } from "../interface";
 import { API_BASE_URL } from "../../../constants";
 import { setAlert } from "../../alert/action-creators";
 
@@ -63,6 +63,28 @@ export const register = (authBody: AuthBody, navigate: NavigateFunction) => {
     } catch (err) {
       dispatch({
         type: ActionType.REGISTRATION_FAILED,
+      });
+      const errors: Error[] = err.response.data.errors;
+      errors.forEach((error) => dispatch(setAlert(error.message)));
+    }
+  };
+};
+
+export const verifyEmail = (verifyEmailBody: VerifyEmailBody) => {
+  return async (dispatch: Dispatch<Actions> | any) => {
+    try {
+      const { email, code } = verifyEmailBody;
+      await api.post(`${API_BASE_URL}/api/verify-email`, {
+        email,
+        code,
+      });
+      dispatch({
+        type: ActionType.VERIFY_EMAIL_SUCCESS,
+      });
+      dispatch(loadUser());
+    } catch (err) {
+      dispatch({
+        type: ActionType.VERIFY_EMAIL_FAILED,
       });
       const errors: Error[] = err.response.data.errors;
       errors.forEach((error) => dispatch(setAlert(error.message)));

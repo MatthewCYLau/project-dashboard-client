@@ -9,6 +9,15 @@ export interface AuthBody {
   password: string;
 }
 
+export interface VerifyEmailBody {
+  email: string;
+  code: string;
+}
+
+export interface TriggerVerificationBody {
+  email: string;
+}
+
 export interface Token {
   token: string;
 }

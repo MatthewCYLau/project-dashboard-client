@@ -24,6 +24,7 @@ interface EmailVerificationFormValues {
 
 const EmailVerificationPage: React.FunctionComponent = () => {
   const styles = useStyles();
+  const { verifyEmail } = useActions();
   const { isAuthenticated, registrationEmail } = useTypedSelector(
     (state) => state.authState
   );
@@ -35,6 +36,7 @@ const EmailVerificationPage: React.FunctionComponent = () => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values, actions) => {
+      verifyEmail({ email: registrationEmail, code: values.code });
       actions.setSubmitting(false);
     },
   });
