@@ -24,7 +24,7 @@ interface EmailVerificationFormValues {
 
 const EmailVerificationPage: React.FunctionComponent = () => {
   const styles = useStyles();
-  const { verifyEmail } = useActions();
+  const { verifyEmail, triggerVerificationEmail } = useActions();
   const { isAuthenticated, registrationEmail } = useTypedSelector(
     (state) => state.authState
   );
@@ -44,6 +44,10 @@ const EmailVerificationPage: React.FunctionComponent = () => {
   if (isAuthenticated) {
     return <Navigate to="/dashboard" />;
   }
+
+  const resendVerificationCode = () => {
+    triggerVerificationEmail(registrationEmail);
+  };
 
   return (
     <Grid container component="main" className={styles.root}>
@@ -97,7 +101,11 @@ const EmailVerificationPage: React.FunctionComponent = () => {
             </Button>
             <Grid container>
               <Grid item>
-                <MaterialUILink href="/" variant="body2">
+                <MaterialUILink
+                  href="#"
+                  variant="body2"
+                  onClick={() => resendVerificationCode()}
+                >
                   {"Resend code"}
                 </MaterialUILink>
               </Grid>

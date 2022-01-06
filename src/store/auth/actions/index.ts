@@ -43,8 +43,12 @@ interface VerifyEmailFailedAction {
   type: ActionType.VERIFY_EMAIL_FAILED;
 }
 
-interface TriggerVerificationAction {
+interface TriggerVerificationSuccessAction {
   type: ActionType.TRIGGER_VERIFICATION_SUCCESS;
+}
+
+interface TriggerVerificationFailedAction {
+  type: ActionType.TRIGGER_VERIFICATION_FAILED;
 }
 
 export type Actions =
@@ -57,4 +61,5 @@ export type Actions =
   | LogoutAction
   | VerifyEmailSuccessAction
   | VerifyEmailFailedAction
-  | TriggerVerificationAction;
+  | TriggerVerificationSuccessAction
+  | TriggerVerificationFailedAction;

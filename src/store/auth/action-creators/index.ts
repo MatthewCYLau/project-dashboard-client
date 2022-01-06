@@ -4,7 +4,13 @@ import api from "../../../utils/api";
 import { Dispatch } from "redux";
 import { ActionType } from "../action-types";
 import { Actions } from "../actions";
-import { AuthBody, User, Token, VerifyEmailBody } from "../interface";
+import {
+  AuthBody,
+  User,
+  Token,
+  VerifyEmailBody,
+  TriggerVerificationBody,
+} from "../interface";
 import { API_BASE_URL } from "../../../constants";
 import { setAlert } from "../../alert/action-creators";
 
@@ -85,6 +91,27 @@ export const verifyEmail = (verifyEmailBody: VerifyEmailBody) => {
     } catch (err) {
       dispatch({
         type: ActionType.VERIFY_EMAIL_FAILED,
+      });
+      const errors: Error[] = err.response.data.errors;
+      errors.forEach((error) => dispatch(setAlert(error.message)));
+    }
+  };
+};
+
+export const triggerVerificationEmail = (registrationEmail: string) => {
+  return async (dispatch: Dispatch<Actions> | any) => {
+    const payload: TriggerVerificationBody = {
+      email: registrationEmail,
+    };
+    try {
+      await api.post(`${API_BASE_URL}/api/trigger-verification`, payload);
+      dispatch({
+        type: ActionType.TRIGGER_VERIFICATION_SUCCESS,
+      });
+      dispatch(setAlert("Email verification code resent"));
+    } catch (err) {
+      dispatch({
+        type: ActionType.TRIGGER_VERIFICATION_FAILED,
       });
       const errors: Error[] = err.response.data.errors;
       errors.forEach((error) => dispatch(setAlert(error.message)));
