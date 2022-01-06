@@ -4,6 +4,7 @@ import { ActionType } from "../action-types";
 interface Alert {
   id: string;
   message: string;
+  severity: "error" | "info";
 }
 
 interface AlertState {

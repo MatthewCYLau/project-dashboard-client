@@ -108,7 +108,7 @@ export const triggerVerificationEmail = (registrationEmail: string) => {
       dispatch({
         type: ActionType.TRIGGER_VERIFICATION_SUCCESS,
       });
-      dispatch(setAlert("Email verification code resent"));
+      dispatch(setAlert("Email verification code resent", "info"));
     } catch (err) {
       dispatch({
         type: ActionType.TRIGGER_VERIFICATION_FAILED,

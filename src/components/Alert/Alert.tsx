@@ -17,7 +17,7 @@ const CustomAlert: React.FunctionComponent = () => {
           <Alert
             onClose={() => removeAlert(alert.id)}
             key={alert.id}
-            severity="error"
+            severity={alert.severity}
           >
             {alert.message}
           </Alert>

@@ -5,6 +5,7 @@ interface SetAlertAction {
   payload: {
     id: string;
     message: string;
+    severity: "error" | "info";
   };
 }
 
