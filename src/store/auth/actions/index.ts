@@ -11,10 +11,7 @@ interface AuthErrorAction {
 
 interface RegistrationSuccessAction {
   type: ActionType.REGISTRATION_SUCCESS;
-  payload: {
-    token: Token;
-    registrationEmail: string;
-  };
+  payload: string;
 }
 
 interface RegistrationFailedAction {
@@ -37,6 +34,7 @@ interface LogoutAction {
 
 interface VerifyEmailSuccessAction {
   type: ActionType.VERIFY_EMAIL_SUCCESS;
+  payload: Token;
 }
 
 interface VerifyEmailFailedAction {

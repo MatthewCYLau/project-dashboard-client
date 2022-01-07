@@ -34,8 +34,13 @@ const reducer = (
     case ActionType.REGISTRATION_SUCCESS:
       return {
         ...state,
-        token: action.payload.token.token,
-        registrationEmail: action.payload.registrationEmail,
+        registrationEmail: action.payload,
+        loading: false,
+      };
+    case ActionType.VERIFY_EMAIL_SUCCESS:
+      return {
+        ...state,
+        token: action.payload.token,
         loading: false,
       };
     case ActionType.LOGIN_SUCCESS:
@@ -46,6 +51,7 @@ const reducer = (
         loading: false,
       };
     case ActionType.REGISTRATION_FAILED:
+    case ActionType.VERIFY_EMAIL_FAILED:
     case ActionType.AUTH_ERROR:
     case ActionType.LOGIN_FAILED:
     case ActionType.LOGOUT:

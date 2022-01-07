@@ -51,19 +51,13 @@ export const register = (authBody: AuthBody, navigate: NavigateFunction) => {
   return async (dispatch: Dispatch<Actions> | any) => {
     try {
       const { email, password } = authBody;
-      const { data }: AxiosResponse<Token> = await api.post(
-        `${API_BASE_URL}/api/users`,
-        {
-          email,
-          password,
-        }
-      );
+      await api.post(`${API_BASE_URL}/api/users`, {
+        email,
+        password,
+      });
       dispatch({
         type: ActionType.REGISTRATION_SUCCESS,
-        payload: {
-          token: data,
-          registrationEmail: email,
-        },
+        payload: email,
       });
       navigate("/verify-email");
     } catch (err) {
@@ -80,12 +74,18 @@ export const verifyEmail = (verifyEmailBody: VerifyEmailBody) => {
   return async (dispatch: Dispatch<Actions> | any) => {
     try {
       const { email, code } = verifyEmailBody;
-      await api.post(`${API_BASE_URL}/api/verify-email`, {
-        email,
-        code,
-      });
+      const { data }: AxiosResponse<any> = await api.post(
+        `${API_BASE_URL}/api/verify-email`,
+        {
+          email,
+          code,
+        }
+      );
       dispatch({
         type: ActionType.VERIFY_EMAIL_SUCCESS,
+        payload: {
+          token: data.token,
+        },
       });
       dispatch(loadUser());
     } catch (err) {
