@@ -50,6 +50,14 @@ interface UpdateProjectErrorAction {
   type: ActionType.UPDATE_PROJECT_ERROR;
 }
 
+interface DeleteProjectSuccessAction {
+  type: ActionType.DELETE_PROJECT_SUCCESS;
+}
+
+interface DeleteProjectErrorAction {
+  type: ActionType.DELETE_PROJECT_ERROR;
+}
+
 export type Actions =
   | AddProjectRequestAction
   | AddProjectSuccessAction
@@ -61,4 +69,6 @@ export type Actions =
   | GetProjectsSuccessAction
   | GetProjectsErrorAction
   | UpdateProjectSuccessAction
-  | UpdateProjectErrorAction;
+  | UpdateProjectErrorAction
+  | DeleteProjectSuccessAction
+  | DeleteProjectErrorAction;

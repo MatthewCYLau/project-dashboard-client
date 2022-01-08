@@ -78,6 +78,23 @@ export const updateProjectById = (
   };
 };
 
+export const deleteProjectById = (id: string, navigate: NavigateFunction) => {
+  return async (dispatch: Dispatch<Actions>) => {
+    try {
+      await api.delete(`${API_BASE_URL}/api/projects/${id}`);
+      dispatch({
+        type: ActionType.DELETE_PROJECT_SUCCESS,
+      });
+      navigate("/dashboard");
+    } catch (err) {
+      dispatch({
+        type: ActionType.DELETE_PROJECT_ERROR,
+        payload: {},
+      });
+    }
+  };
+};
+
 export const getProjecs = () => {
   return async (dispatch: Dispatch<Actions>) => {
     dispatch({

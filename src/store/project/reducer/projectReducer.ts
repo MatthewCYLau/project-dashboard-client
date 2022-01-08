@@ -50,6 +50,7 @@ const reducer = (
     case ActionType.GET_PROJECT_ERROR:
     case ActionType.ADD_PROJECT_ERROR:
     case ActionType.GET_PROJECTS_ERROR:
+    case ActionType.DELETE_PROJECT_ERROR:
       return {
         ...state,
         loading: false,

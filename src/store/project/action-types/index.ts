@@ -10,4 +10,6 @@ export enum ActionType {
   GET_PROJECTS_ERROR = "get_projects_error",
   UPDATE_PROJECT_SUCCESS = "update_project_success",
   UPDATE_PROJECT_ERROR = "update_project_error",
+  DELETE_PROJECT_SUCCESS = "delete_project_success",
+  DELETE_PROJECT_ERROR = "delete_project_error",
 }
