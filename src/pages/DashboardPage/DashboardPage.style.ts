@@ -7,12 +7,6 @@ export default makeStyles(
         paddingTop: spacing(3),
         paddingBottom: spacing(3),
       },
-      loader: {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-      },
       link: {
         color: palette.text.primary,
         textDecoration: "none",

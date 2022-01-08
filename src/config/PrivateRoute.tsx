@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import CircularProgress from "@mui/material/CircularProgress";
+import Loader from "../components/Loader";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 
 type PrivateRouteProps = {
@@ -13,7 +13,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   const { isAuthenticated, loading } = useTypedSelector(
     (state) => state.authState
   );
-  if (loading) return <CircularProgress />;
+  if (loading) return <Loader />;
   if (isAuthenticated) return <Component />;
   return <Navigate to="/login" />;
 };

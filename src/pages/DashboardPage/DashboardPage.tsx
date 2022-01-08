@@ -15,9 +15,9 @@ import {
 import { API_BASE_URL } from "../../constants";
 import api from "../../utils/api";
 import Meta from "../../components/Meta";
+import Loader from "../../components/Loader";
 import TableRow from "@mui/material/TableRow";
 import PieChart from "../../components/PieChart";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import useStyles from "./DashboardPage.style";
@@ -50,7 +50,7 @@ const DashboardPage: React.FunctionComponent = () => {
   }, []);
 
   return loading ? (
-    <CircularProgress className={styles.loader} />
+    <Loader />
   ) : (
     <Container component="main" maxWidth="lg" className={styles.root}>
       <Meta title="Project Dashboard" />
