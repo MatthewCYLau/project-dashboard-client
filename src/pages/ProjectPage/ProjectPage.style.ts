@@ -22,6 +22,10 @@ export default makeStyles(
       },
       secondaryButton: {
         backgroundColor: palette.text.secondary,
+        margin: spacing(0, 0, 2),
+      },
+      deleteButton: {
+        backgroundColor: palette.error.light,
       },
       loader: {
         position: "absolute",

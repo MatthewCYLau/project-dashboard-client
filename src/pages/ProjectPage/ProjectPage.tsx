@@ -24,7 +24,7 @@ const ProjectPage: React.FunctionComponent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const styles = useStyles();
-  const { getProjectById, updateProjectById } = useActions();
+  const { getProjectById, updateProjectById, deleteProjectById } = useActions();
   const { loading, project } = useTypedSelector((state) => state.projectState);
 
   const initialValues: AddProjectFormValues = {
@@ -89,6 +89,15 @@ const ProjectPage: React.FunctionComponent = () => {
           onClick={() => navigate(`/projects/${id}/project-skills`)}
         >
           Update Project Skills
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={styles.deleteButton}
+          onClick={() => id && deleteProjectById(id, navigate)}
+        >
+          Delete Project
         </Button>
       </div>
     </Container>
