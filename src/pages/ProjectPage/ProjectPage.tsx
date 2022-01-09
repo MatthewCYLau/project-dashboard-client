@@ -6,6 +6,8 @@ import {
   Button,
   Avatar,
   CssBaseline,
+  Modal,
+  Paper,
 } from "@material-ui/core";
 import CircularProgress from "@mui/material/CircularProgress";
 import Meta from "../../components/Meta";
@@ -26,6 +28,9 @@ const ProjectPage: React.FunctionComponent = () => {
   const styles = useStyles();
   const { getProjectById, updateProjectById, deleteProjectById } = useActions();
   const { loading, project } = useTypedSelector((state) => state.projectState);
+  const [open, setOpen] = React.useState<boolean>(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const initialValues: AddProjectFormValues = {
     name: project.name,
@@ -95,10 +100,20 @@ const ProjectPage: React.FunctionComponent = () => {
           variant="contained"
           color="primary"
           className={styles.deleteButton}
-          onClick={() => id && deleteProjectById(id, navigate)}
+          onClick={handleOpen}
         >
           Delete Project
         </Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="delete-project"
+          aria-describedby="delete-project-confirmation"
+        >
+          <Paper className={styles.modal}>
+            <Typography id="modal-modal-title">Text in a modal</Typography>
+          </Paper>
+        </Modal>
       </div>
     </Container>
   );
