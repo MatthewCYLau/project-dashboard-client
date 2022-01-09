@@ -7,10 +7,10 @@ import {
   Avatar,
   CssBaseline,
   Modal,
-  Paper,
 } from "@material-ui/core";
 import CircularProgress from "@mui/material/CircularProgress";
 import Meta from "../../components/Meta";
+import Confirm from "../../components/Confirm";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { useFormik } from "formik";
 import { useActions } from "../../hooks/useActions";
@@ -110,9 +110,11 @@ const ProjectPage: React.FunctionComponent = () => {
           aria-labelledby="delete-project"
           aria-describedby="delete-project-confirmation"
         >
-          <Paper className={styles.modal}>
-            <Typography id="modal-modal-title">Text in a modal</Typography>
-          </Paper>
+          <Confirm
+            message={`Are you sure you want to delete project ${project.name}?`}
+            onConfirm={() => id && deleteProjectById(id, navigate)}
+            onCancel={handleClose}
+          />
         </Modal>
       </div>
     </Container>
