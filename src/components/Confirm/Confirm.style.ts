@@ -14,6 +14,12 @@ export default makeStyles(
         flexDirection: "column",
         padding: spacing(2),
       },
+      submit: {
+        margin: spacing(3, 0, 2),
+      },
+      secondaryButton: {
+        backgroundColor: palette.text.secondary,
+      },
     }),
   { name: "Confirm" }
 );

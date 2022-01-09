@@ -26,6 +26,7 @@ const Loader: React.FunctionComponent<ConfirmProps> = ({
         variant="contained"
         color="primary"
         onClick={onConfirm}
+        className={styles.submit}
       >
         Confirm
       </Button>
@@ -33,8 +34,9 @@ const Loader: React.FunctionComponent<ConfirmProps> = ({
         type="submit"
         fullWidth
         variant="contained"
-        color="primary"
         onClick={onCancel}
+        color="primary"
+        className={styles.secondaryButton}
       >
         Cancel
       </Button>
