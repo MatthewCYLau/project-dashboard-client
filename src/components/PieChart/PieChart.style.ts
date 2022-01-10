@@ -1,12 +1,16 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(
-  ({ palette }) =>
+  ({ spacing }) =>
     createStyles({
-      link: {
-        color: palette.text.primary,
-        textDecoration: "none",
+      container: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      },
+      label: {
+        margin: spacing(1, 0, 1),
       },
     }),
-  { name: "CopyRight" }
+  { name: "PieChart" }
 );

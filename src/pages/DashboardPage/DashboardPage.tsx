@@ -60,6 +60,7 @@ const DashboardPage: React.FunctionComponent = () => {
       </Typography>
       <Container className={styles.pieChartContainer}>
         <PieChart
+          label="Skills count"
           data={projectSkillsCount}
           width={240}
           height={240}

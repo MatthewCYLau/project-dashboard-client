@@ -1,7 +1,11 @@
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import { Typography, Container } from "@material-ui/core";
 import * as d3 from "d3";
+import useStyles from "./PieChart.style";
 
 const PieChart = (props) => {
+  const styles = useStyles();
   const ref = useRef(null);
   const cache = useRef(props.data);
   const createPie = d3
@@ -78,13 +82,27 @@ const PieChart = (props) => {
   }, [props.data, colors, createArc, createPie, format]);
 
   return (
-    <svg width={props.width} height={props.height}>
-      <g
-        ref={ref}
-        transform={`translate(${props.outerRadius} ${props.outerRadius})`}
-      />
-    </svg>
+    <Container className={styles.container}>
+      <Typography className={styles.label} variant="subtitle2">
+        {props.label}
+      </Typography>
+      <svg width={props.width} height={props.height}>
+        <g
+          ref={ref}
+          transform={`translate(${props.outerRadius} ${props.outerRadius})`}
+        />
+      </svg>
+    </Container>
   );
+};
+
+PieChart.propTypes = {
+  label: PropTypes.string,
+  data: PropTypes.array,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  innerRadius: PropTypes.number,
+  outerRadius: PropTypes.number,
 };
 
 export default PieChart;
