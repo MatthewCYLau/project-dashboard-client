@@ -1,5 +1,5 @@
 # React build environment
-FROM node:lts as react-build
+FROM node:16-alpine as react-build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
