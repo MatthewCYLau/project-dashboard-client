@@ -18,6 +18,7 @@ import Meta from "../../components/Meta";
 import Loader from "../../components/Loader";
 import TableRow from "@mui/material/TableRow";
 import PieChart from "../../components/PieChart";
+import Count from "../../components/Count";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import useStyles from "./DashboardPage.style";
@@ -29,12 +30,13 @@ interface ProjectSkillsCount {
 
 const DashboardPage: React.FunctionComponent = () => {
   const styles = useStyles();
-  const { getProjecs } = useActions();
+  const { getProjecs, getSkills } = useActions();
   const [projectSkillsCount, setProjectSkillsCount] = useState<
     ProjectSkillsCount[]
   >([]);
   const { loading } = useTypedSelector((state) => state.authState);
   const { projects } = useTypedSelector((state) => state.projectState);
+  const { skills } = useTypedSelector((state) => state.skillState);
 
   const getProjectSkillsCount = async () => {
     const { data } = await api.get<ProjectSkillsCount[]>(
@@ -46,6 +48,7 @@ const DashboardPage: React.FunctionComponent = () => {
   useEffect(() => {
     getProjecs();
     getProjectSkillsCount();
+    getSkills();
     // eslint-disable-next-line
   }, []);
 
@@ -58,21 +61,23 @@ const DashboardPage: React.FunctionComponent = () => {
       <Typography variant="h3" gutterBottom component="div">
         Dashboard
       </Typography>
-      <Container className={styles.pieChartContainer}>
+      <Container className={styles.chartsContainer}>
         <PieChart
-          label="Skills count"
+          label="Skills Usages"
           data={projectSkillsCount}
           width={240}
           height={240}
           innerRadius={60}
           outerRadius={120}
         />
+        <Count title="Skills Count" count={skills.length} />
       </Container>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Project</TableCell>
+              <TableCell>Sector</TableCell>
               <TableCell>Skills</TableCell>
             </TableRow>
           </TableHead>
@@ -86,6 +91,9 @@ const DashboardPage: React.FunctionComponent = () => {
                   <Link to={`/projects/${project._id}`} className={styles.link}>
                     {project.name}
                   </Link>
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  {project.sector}
                 </TableCell>
                 <TableCell align="right">
                   {project.project_skills.map((projectSkill, i) => (

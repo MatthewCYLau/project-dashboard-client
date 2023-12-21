@@ -4,7 +4,7 @@ export default makeStyles(
   ({ spacing, palette }) =>
     createStyles({
       root: {
-        height: "100vh",
+        height: "calc(100vh - 64px);",
       },
       image: {
         backgroundImage:

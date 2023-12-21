@@ -1,21 +1,24 @@
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles(({ spacing }) => createStyles({
-    root: {
+export default makeStyles(
+  ({ spacing }) =>
+    createStyles({
+      root: {
         flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        overflow: 'auto',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        overflow: "auto",
         paddingTop: spacing(3),
-        paddingBottom: spacing(3)
-    },
-    image: {
-        maxHeight: '50%',
-        width: '100%',
+        paddingBottom: spacing(3),
+      },
+      image: {
+        maxHeight: "50%",
+        width: "100%",
         marginBottom: spacing(3),
-    }
-}),
-{ name: 'NotFoundPage' });
+      },
+    }),
+  { name: "NotFoundPage" }
+);

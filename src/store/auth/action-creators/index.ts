@@ -6,6 +6,7 @@ import { ActionType } from "../action-types";
 import { Actions } from "../actions";
 import {
   AuthBody,
+  RegistrationBody,
   User,
   Token,
   VerifyEmailBody,
@@ -47,11 +48,15 @@ export const login = ({ email = "", password = "" }: AuthBody) => {
   };
 };
 
-export const register = (authBody: AuthBody, navigate: NavigateFunction) => {
+export const register = (
+  registrationBody: RegistrationBody,
+  navigate: NavigateFunction
+) => {
   return async (dispatch: Dispatch<Actions> | any) => {
     try {
-      const { email, password } = authBody;
+      const { name, email, password } = registrationBody;
       await api.post(`${API_BASE_URL}/api/users`, {
+        name,
         email,
         password,
       });

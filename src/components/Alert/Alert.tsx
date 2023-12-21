@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import Alert from "@mui/material/Alert";
@@ -8,6 +8,13 @@ const CustomAlert: React.FunctionComponent = () => {
   const { alerts } = useTypedSelector((state) => state.alertState);
   const { removeAlert } = useActions();
   const styles = useStyles();
+
+  useEffect(() => {
+    alerts.length > 0 &&
+      setTimeout(() => {
+        removeAlert(alerts[0].id);
+      }, 3000);
+  }, [alerts, removeAlert]);
 
   return (
     <div className={styles.container}>

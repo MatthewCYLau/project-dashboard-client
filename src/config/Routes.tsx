@@ -10,6 +10,7 @@ import AddSkillPage from "../pages/AddSkillPage";
 import AddProjectPage from "../pages/AddProjectPage";
 import ProjectPage from "../pages/ProjectPage";
 import ProjectSkillsPage from "../pages/ProjectSkillsPage";
+import SkillsPage from "../pages/SkillsPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 const AppRoutes = () => {
@@ -28,6 +29,7 @@ const AppRoutes = () => {
         path="add-skill"
         element={<PrivateRoute component={AddSkillPage} />}
       />
+      <Route path="skills" element={<PrivateRoute component={SkillsPage} />} />
       <Route
         path="add-project"
         element={<PrivateRoute component={AddProjectPage} />}

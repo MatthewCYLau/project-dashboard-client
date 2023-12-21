@@ -15,12 +15,9 @@ export const addProject = (
       type: ActionType.ADD_PROJECT_REQUEST,
     });
     try {
-      const { name } = project;
       const { data } = await api.post<ProjectResponse>(
         `${API_BASE_URL}/api/projects`,
-        {
-          name,
-        }
+        project
       );
       dispatch({
         type: ActionType.ADD_PROJECT_SUCCESS,

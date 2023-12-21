@@ -6,6 +6,8 @@ import {
   Button,
   Avatar,
   CssBaseline,
+  Grid,
+  Link as MaterialUILink,
 } from "@material-ui/core";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -32,12 +34,13 @@ const ProjectSkillsPage: React.FunctionComponent = () => {
 
   const options = skills.map((skill) => skill.name);
 
-  const removeItem = (_event: React.MouseEvent<HTMLElement>, index: number) => {
-    setProjectSkills([
-      ...projectSkills.slice(0, index),
-      ...projectSkills.slice(index + 1),
-    ]);
-  };
+  const removeItem =
+    (index: number) => (_e: React.MouseEvent<HTMLInputElement>) => {
+      setProjectSkills([
+        ...projectSkills.slice(0, index),
+        ...projectSkills.slice(index + 1),
+      ]);
+    };
 
   const getSkillIdBySkillName = (name: string | null) => {
     const skilId = skills.find((skill) => skill.name === name)?._id;
@@ -74,7 +77,7 @@ const ProjectSkillsPage: React.FunctionComponent = () => {
   return loading ? (
     <CircularProgress className={styles.loader} />
   ) : (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className={styles.root}>
       <Meta title="Add Project Skills" />
       <CssBaseline />
       <div className={styles.paper}>
@@ -115,12 +118,7 @@ const ProjectSkillsPage: React.FunctionComponent = () => {
                   });
                 }}
               />
-              <div
-                className={styles.iconContainer}
-                onClick={(e) => {
-                  removeItem(e, i);
-                }}
-              >
+              <div className={styles.iconContainer} onClick={removeItem(i)}>
                 <RemoveCircle />
               </div>
             </div>
@@ -152,6 +150,13 @@ const ProjectSkillsPage: React.FunctionComponent = () => {
           >
             Add Project Skills
           </Button>
+          <Grid container>
+            <Grid item>
+              <MaterialUILink href="/add-skill" variant="body2">
+                {"Cannot find a skill?"}
+              </MaterialUILink>
+            </Grid>
+          </Grid>
         </form>
       </div>
     </Container>

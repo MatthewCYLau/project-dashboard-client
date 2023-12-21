@@ -1,39 +1,37 @@
 import { Actions } from "../actions";
 import { ActionType } from "../action-types";
-import { TodosList } from "../interface";
+import { Comment } from "../interface";
 
-interface TodoState {
+interface CommentState {
   loading: boolean;
-  todos: TodosList;
+  comments: Comment[];
 }
 
 const initialState = {
   loading: true,
-  todos: [],
+  comments: [],
 };
 
 const reducer = (
-  state: TodoState = initialState,
+  state: CommentState = initialState,
   action: Actions
-): TodoState => {
+): CommentState => {
   switch (action.type) {
-    case ActionType.GET_TODOS_SUCCESS:
+    case ActionType.ADD_COMMENT_ERROR:
       return {
         ...state,
         loading: false,
-        todos: action.payload,
       };
-    case ActionType.GET_TODOS_ERROR:
-    case ActionType.DELETE_TODO_ERROR:
+    case ActionType.ADD_COMMENT_SUCCESS:
       return {
         ...state,
         loading: false,
-        todos: [],
       };
-    case ActionType.CREATE_TODO_SUCCESS:
+    case ActionType.GET_COMMENTS_BY_ID_SUCCESS:
       return {
         ...state,
         loading: false,
+        comments: action.payload,
       };
     default:
       return state;

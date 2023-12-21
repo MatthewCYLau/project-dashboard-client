@@ -9,7 +9,10 @@ import {
   Modal,
 } from "@material-ui/core";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Sector } from "../../constants";
+import Dropdown from "../../components/Dropdown";
 import Meta from "../../components/Meta";
+import Comments from "../../components/Comments";
 import Confirm from "../../components/Confirm";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { useFormik } from "formik";
@@ -18,8 +21,9 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import useStyles from "./ProjectPage.style";
 import { useParams, useNavigate } from "react-router-dom";
 
-interface AddProjectFormValues {
+interface UpdateProjectFormValues {
   name: string;
+  sector: string;
 }
 
 const ProjectPage: React.FunctionComponent = () => {
@@ -28,12 +32,15 @@ const ProjectPage: React.FunctionComponent = () => {
   const styles = useStyles();
   const { getProjectById, updateProjectById, deleteProjectById } = useActions();
   const { loading, project } = useTypedSelector((state) => state.projectState);
+  const { user } = useTypedSelector((state) => state.authState);
   const [open, setOpen] = React.useState<boolean>(false);
+  const [isEditMode, setIsEditMode] = React.useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const initialValues: AddProjectFormValues = {
+  const initialValues: UpdateProjectFormValues = {
     name: project.name,
+    sector: project.sector,
   };
 
   useEffect(() => {
@@ -50,10 +57,24 @@ const ProjectPage: React.FunctionComponent = () => {
     },
   });
 
+  const handleOnEditClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    setIsEditMode(true);
+  };
+
+  const handleChange = (
+    event: React.ChangeEvent<{ value: string | unknown }>
+  ) => {
+    event.preventDefault();
+    const { value } = event.target;
+
+    formik.setFieldValue("sector", value);
+  };
+
   return loading ? (
     <CircularProgress className={styles.loader} />
   ) : (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className={styles.root}>
       <Meta title={`Project - ${project.name}`} />
       <CssBaseline />
       <div className={styles.paper}>
@@ -64,6 +85,20 @@ const ProjectPage: React.FunctionComponent = () => {
           Update project
         </Typography>
         <form className={styles.form} noValidate onSubmit={formik.handleSubmit}>
+          <Dropdown
+            labelId="sector-label"
+            id="sector"
+            value={formik.values.sector}
+            label="Sector"
+            onChange={handleChange}
+            renderValue={() => formik.values.sector}
+            options={[
+              Sector.FinancialServices,
+              Sector.PublicSector,
+              Sector.PrivateSector,
+            ]}
+            disabled={!isEditMode}
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -75,16 +110,29 @@ const ProjectPage: React.FunctionComponent = () => {
             autoFocus
             value={formik.values.name}
             onChange={formik.handleChange}
+            disabled={!isEditMode}
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={styles.submit}
-          >
-            Save Project
-          </Button>
+          {isEditMode ? (
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={styles.submit}
+            >
+              Save Project
+            </Button>
+          ) : (
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={styles.submit}
+              onClick={handleOnEditClick}
+            >
+              Edit Project
+            </Button>
+          )}
         </form>
         <Button
           fullWidth
@@ -95,15 +143,17 @@ const ProjectPage: React.FunctionComponent = () => {
         >
           Update Project Skills
         </Button>
-        <Button
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={styles.deleteButton}
-          onClick={handleOpen}
-        >
-          Delete Project
-        </Button>
+        {user?._id === project.created_by && (
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={styles.deleteButton}
+            onClick={handleOpen}
+          >
+            Delete Project
+          </Button>
+        )}
         <Modal
           open={open}
           onClose={handleClose}
@@ -117,6 +167,7 @@ const ProjectPage: React.FunctionComponent = () => {
           />
         </Modal>
       </div>
+      {id && <Comments projectId={id} />}
     </Container>
   );
 };

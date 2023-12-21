@@ -6,6 +6,7 @@ export default makeStyles(
       root: {
         paddingTop: spacing(3),
         paddingBottom: spacing(3),
+        minHeight: "calc(100vh - 64px);",
       },
       link: {
         color: palette.text.primary,
@@ -19,11 +20,14 @@ export default makeStyles(
           marginBottom: "2px",
         },
       },
-      pieChartContainer: {
+      chartsContainer: {
         display: "flex",
         justifyContent: "center",
         paddingTop: "10px",
         paddingBottom: "20px",
+        [breakpoints.down("sm")]: {
+          flexDirection: "column",
+        },
       },
     }),
   { name: "DashboardPage" }

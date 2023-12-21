@@ -11,9 +11,11 @@ interface ProjectState {
 const initialState = {
   loading: true,
   project: {
-    name: "",
-    project_skills: [],
     _id: "",
+    name: "",
+    sector: "",
+    created_by: "",
+    project_skills: [],
   },
   projects: [],
 };

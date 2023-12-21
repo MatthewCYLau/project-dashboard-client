@@ -7,7 +7,7 @@ export default makeStyles(
         position: "relative",
         background:
           'url("https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80") no-repeat center center/cover',
-        height: "100vh",
+        height: "calc(100vh - 64px);",
       },
       darkOverlay: {
         backgroundColor: "rgba(0, 0, 0, 0.7)",

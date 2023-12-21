@@ -4,7 +4,7 @@ import Loader from "../components/Loader";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 
 type PrivateRouteProps = {
-  component: React.ComponentType<any>;
+         component: React.ComponentType<any>;
 };
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({

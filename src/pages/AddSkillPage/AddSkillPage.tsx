@@ -36,7 +36,7 @@ const AddSkillPage: React.FunctionComponent = () => {
   });
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className={styles.root}>
       <Meta title="Add Skill" />
       <CssBaseline />
       <div className={styles.paper}>

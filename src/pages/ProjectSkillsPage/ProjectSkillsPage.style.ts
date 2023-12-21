@@ -3,6 +3,9 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 export default makeStyles(
   ({ spacing, palette }) =>
     createStyles({
+      root: {
+        minHeight: "calc(100vh - 64px);",
+      },
       paper: {
         marginTop: spacing(8),
         display: "flex",
@@ -18,7 +21,7 @@ export default makeStyles(
         marginTop: spacing(1),
       },
       submit: {
-        margin: "0",
+        margin: spacing(0, 0, 2),
       },
       secondaryButton: {
         backgroundColor: palette.text.secondary,

@@ -21,6 +21,7 @@ import useStyles from "./RegistrationPage.style";
 
 interface RegistrationFormValues {
   email: string;
+  name: string;
   password: string;
   password2: string;
 }
@@ -33,6 +34,7 @@ const RegistrationPage: React.FunctionComponent = () => {
 
   const initialValues: RegistrationFormValues = {
     email: "",
+    name: "",
     password: "",
     password2: "",
   };
@@ -43,7 +45,10 @@ const RegistrationPage: React.FunctionComponent = () => {
       if (values.password !== values.password2) {
         setAlert("Passwords do not match");
       } else {
-        register({ email: values.email, password: values.password }, navigate);
+        register(
+          { email: values.email, password: values.password, name: values.name },
+          navigate
+        );
       }
 
       actions.setSubmitting(false);
@@ -71,6 +76,18 @@ const RegistrationPage: React.FunctionComponent = () => {
             noValidate
             onSubmit={formik.handleSubmit}
           >
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+            />
             <TextField
               variant="outlined"
               margin="normal"

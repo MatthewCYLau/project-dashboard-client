@@ -1,5 +1,5 @@
 export interface User {
-  user_id: string;
+  _id: string;
   email: string;
   time_created: string;
 }
@@ -7,6 +7,10 @@ export interface User {
 export interface AuthBody {
   email: string;
   password: string;
+}
+
+export interface RegistrationBody extends AuthBody {
+  name: string;
 }
 
 export interface VerifyEmailBody {
