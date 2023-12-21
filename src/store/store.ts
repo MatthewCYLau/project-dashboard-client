@@ -26,6 +26,8 @@ store.subscribe(() => {
     const token = currentState.authState.token;
     if (token) {
       setAuthToken(token);
+    } else {
+      setAuthToken("")
     }
   }
 });
