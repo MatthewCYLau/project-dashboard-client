@@ -6,7 +6,10 @@ A React TypeScript app which tracks skills used in various projects
 
 App URL here: [`https://project-dashboard-client-3i2mtbjusq-ew.a.run.app/`](https://project-dashboard-client-3i2mtbjusq-ew.a.run.app/)
 
-Back-end Python Flask project can be found [here](https://github.com/MatthewCYLau/project-dashboard-api)
+The list of repositories are as follow:
+
+- Python Flask API repository [here](https://github.com/MatthewCYLau/project-dashboard-api)
+- React TypeScript client repository [here](https://github.com/MatthewCYLau/project-dashboard-client)
 
 ## Build/run app locally
 
