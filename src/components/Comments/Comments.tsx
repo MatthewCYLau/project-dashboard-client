@@ -97,6 +97,7 @@ const Comments: React.FunctionComponent<CommentsProps> = ({ projectId }) => {
         <Comment
           body={comment.body}
           created={comment.created}
+          created_by_name={comment.created_by.name}
           key={comment._id}
           id={comment._id}
           deleteCommentById={deleteCommentById}
