@@ -1,7 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Typography, Container, Paper } from "@material-ui/core";
 import useStyles from "./Count.style";
+import { Link } from "react-router-dom";
 
 type CountProps = {
   title: string;
@@ -9,13 +9,14 @@ type CountProps = {
 };
 const Count: React.FunctionComponent<CountProps> = ({ title, count }) => {
   const styles = useStyles();
-  const navigate = useNavigate();
 
   return (
-    <Container className={styles.container} onClick={() => navigate(`/skills`)}>
+    <Container className={styles.container}>
       <Paper elevation={3} className={styles.paper}>
-        <Typography variant="subtitle2">{title}</Typography>
-        <Typography variant="h2">{count}</Typography>
+        <Link to="/skills" className={styles.link}>
+          <Typography variant="subtitle2">{title}</Typography>
+          <Typography variant="h2">{count}</Typography>
+        </Link>
       </Paper>
     </Container>
   );

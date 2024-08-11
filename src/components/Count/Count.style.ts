@@ -1,7 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(
-  ({ spacing, breakpoints }) =>
+  ({ spacing, breakpoints, palette }) =>
     createStyles({
       container: {
         display: "flex",
@@ -18,6 +18,10 @@ export default makeStyles(
         margin: spacing(0, 6),
         height: "120px",
         justifyContent: "center",
+      },
+      link: {
+        color: palette.text.primary,
+        textDecoration: "none",
       },
     }),
   { name: "Count" }
